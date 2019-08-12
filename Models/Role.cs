@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -16,7 +17,8 @@ namespace Models
         /// Default:
         /// Nullable:False
         /// </summary>           
-        [Required(ErrorMessage = "必填项，不能重复，长度小于50个字符"), MaxLength(50, ErrorMessage = "长度小于50个字符")]
+        [Required(ErrorMessage = "必填项，不能重复，长度小于50个字符"),MaxLength(50, ErrorMessage = "长度小于50个字符")]
+        [SugarColumn(ColumnDataType = "Nvarchar(50)")]//custom
         public string Name
         {
             get { return name; }
