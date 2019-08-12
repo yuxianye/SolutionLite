@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+
+        <!--样式-->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Red.xaml" />
+        <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />-->
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+        <ResourceDictionary Source="ColorBrush.xaml" />
+        <ResourceDictionary Source="ControlResource.xaml" />
+        <ResourceDictionary Source="ShapeBrush.xaml" />
+        <ResourceDictionary Source="SingleValue.xaml" />
+        <ResourceDictionary Source="String_AppLog.xaml" />
+        <ResourceDictionary Source="String_Login.xaml" />
+        <ResourceDictionary Source="String_Module.xaml" />
+        <ResourceDictionary Source="String_Notice.xaml" />
+        <ResourceDictionary Source="String_Opc.xaml" />
+        <ResourceDictionary Source="String_Public.xaml" />
+        <ResourceDictionary Source="String_Role.xaml" />
+        <ResourceDictionary Source="String_Setting.xaml" />
+        <ResourceDictionary Source="String_User.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

@@ -1,0 +1,184 @@
+﻿<Window x:Class="OpcUaHelper.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpcUaHelper.Demo"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Background="LightGoldenrodYellow"
+        Title="OPC UA助手-客户端 1.0"
+        Height="600"
+        Width="800">
+
+    <Grid Margin="5 5 5 5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="可用的OPC UA服务器："
+                           Foreground="Blue"></TextBlock>
+                <ComboBox  Grid.Column="1"
+                           x:Name="cboxOpcServers"
+                           Text="opc.tcp://192.168.1.234:49320"
+                           IsEditable="True"
+                           Width="auto"></ComboBox>
+            </Grid>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Text="运行信息↓"
+                       Foreground="Blue"></TextBlock>
+            <TextBox x:Name="txtMessage"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     VerticalScrollBarVisibility="Visible"
+                     HorizontalScrollBarVisibility="Visible"
+                     Foreground="BlueViolet"></TextBox>
+            <GridSplitter HorizontalAlignment="Stretch"
+                          Height="1.5"
+                          Background="OrangeRed"
+                          Grid.Row="3"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"></GridSplitter>
+            <Grid Grid.Row="5"
+                  Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
+                    <TextBlock   Grid.Row="0"
+                                 Grid.Column="0"
+                                 Text="数据点监控↓"
+                                 Margin=" 0 2 0 0"
+                                 Foreground="Blue"></TextBlock>
+                    <TextBlock x:Name="txtb"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Text=""></TextBlock>
+                </StackPanel>
+                <DataGrid x:Name="gvOpcUaDataItems"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          Foreground="Orchid">
+                    <!--<DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="auto" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="UpdateRate" Width="auto" Binding="{Binding UpdateRate}"/>
+                    <DataGridTextColumn Header="OldValue" Width="auto" Binding="{Binding OldValue}"/>
+                    <DataGridTextColumn Header="NewValue" Width="auto" Binding="{Binding NewValue}"/>
+                    <DataGridTextColumn Header="Quality" Width="auto" Binding="{Binding Quality}"/>
+                </DataGrid.Columns>-->
+                </DataGrid>
+
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Column="1"
+                    Margin="5 0 0 0 ">
+            <Button x:Name="btnSearchOpcServer"
+                    Content="查询服务器"
+                    Margin="0 0 0 0"
+                    Width="75"
+                    Click="btnSearchOpcServer_Click"
+                    RenderTransformOrigin="0.502,0.5" />
+            <Button x:Name="btnConnectOpcServer"
+                    Content="连接服务器"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnConnectOpcServer_Click" />
+            <Button x:Name="btnDisConnectOpcServer"
+                    Content="断开服务器"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnDisConnectOpcServer_Click" />
+            <Button x:Name="btnAddDataItems"
+                    Content="订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnAddDataItems_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnDispose"
+                    Content="Dispose"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnDispose_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnReAddDataItems"
+                    Content="增加订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnReAddDataItems_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnDeleteDataItems"
+                    Content="减少订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnDeleteDataItems_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnNoDataItems"
+                    Content="取消所有订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnbtnNoDataItems_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnAddInvalidDataItems"
+                    Content="增加无效订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnAddInvalidDataItems_Click"
+                    IsEnabled="False" />
+            <Button x:Name="btnWriteDataItem"
+                    Content="写入数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnWriteDataItem_Click" />
+            <Button x:Name="btnReadDataItem"
+                    Content="读取实时数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnReadDataItem_Click" />
+            <Button x:Name="btnReadCacheDataItems"
+                    Content="读取缓存数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnReadCacheDataItems_Click" />
+            <Button x:Name="btnUpdateDataItems"
+                    Content="更新订阅数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnUpdateDataItems_Click" />
+            <TextBox x:Name="txtCreateDataCount"
+                     Margin="0 5 0 0"
+                     Text="5000"></TextBox>
+            <Button x:Name="btnCreateData"
+                    Content="生成数据"
+                    Margin="0 5 0 0"
+                    Width="75"
+                    Click="btnCreateData_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

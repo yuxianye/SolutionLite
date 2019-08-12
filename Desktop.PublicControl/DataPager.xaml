@@ -1,0 +1,77 @@
+﻿<core:UserControlBase x:Class="Desktop.PublicControl.DataPager"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:core="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                      mc:Ignorable="d"
+                      x:Name="dataPager">
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{StaticResource Total}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding TotalCount, ElementName=dataPager,StringFormat='N0'}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{StaticResource ItemRecored}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{StaticResource EveryPage}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <ComboBox  Style="{StaticResource DataPageComboBoxStyle}"
+                   SelectedItem="{Binding PageSize , ElementName=dataPager}"
+                   ItemsSource="{Binding PageSizeItems, ElementName=dataPager}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+        <TextBlock Text="{StaticResource ItemRecored}"
+                   Style="{StaticResource TextBlockStyle}"></TextBlock>
+        <TextBlock Text="{StaticResource At}"
+                   Style="{StaticResource TextBlockStyle}"></TextBlock>
+        <ComboBox Style="{StaticResource DataPageComboBoxStyle}"
+                  SelectedItem="{Binding PageIndex , ElementName=dataPager}"
+                  ItemsSource="{Binding PageIndexItems, ElementName=dataPager}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+        <TextBlock Text="/"
+                   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{Binding TotalPageCount , ElementName=dataPager,StringFormat='N0'}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <TextBlock Text="{StaticResource Page}"
+                   Style="{StaticResource TextBlockStyle}" />
+        <Button ToolTip="{StaticResource FirstPage}"
+                Style="{StaticResource DataPageCircleButtonStyle}"
+                Command="{Binding FirstPageCommand , ElementName=dataPager}">
+            <iconPacks:PackIconMaterial Width="{StaticResource DataPageCircleButtonIconWidth}"
+                                        Height="{StaticResource DataPageCircleButtonIconHeight}"
+                                        Kind="PageFirst" />
+        </Button>
+        <Button ToolTip="{StaticResource PreviousPage}"
+                Style="{StaticResource DataPageCircleButtonStyle}"
+                Command="{Binding PreviousPageCommand, ElementName=dataPager}">
+            <iconPacks:PackIconMaterial Width="{StaticResource DataPageCircleButtonIconWidth}"
+                                        Height="{StaticResource DataPageCircleButtonIconHeight}"
+                                        Kind="ChevronLeft" />
+        </Button>
+        <Button ToolTip="{StaticResource NextPage}"
+                Style="{StaticResource DataPageCircleButtonStyle}"
+                Command="{Binding NextPageCommand, ElementName=dataPager}">
+            <iconPacks:PackIconMaterial Width="{StaticResource DataPageCircleButtonIconWidth}"
+                                        Height="{StaticResource DataPageCircleButtonIconHeight}"
+                                        Kind="ChevronRight" />
+        </Button>
+        <Button ToolTip="{StaticResource LastPage}"
+                Style="{StaticResource DataPageCircleButtonStyle}"
+                Command="{Binding LastPageCommand, ElementName=dataPager}">
+            <iconPacks:PackIconMaterial Width="{StaticResource DataPageCircleButtonIconWidth}"
+                                        Height="{StaticResource DataPageCircleButtonIconHeight}"
+                                        Kind="PageLast" />
+        </Button>
+    </StackPanel>
+
+</core:UserControlBase>

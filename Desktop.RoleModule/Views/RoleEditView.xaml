@@ -1,0 +1,107 @@
+﻿<ucBase:UserControlBase x:Class="Desktop.RoleModule.Views.RoleEditView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                        xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
+                        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        prism:ViewModelLocator.AutoWireViewModel="True"
+                        mc:Ignorable="d"
+                        d:DesignHeight="450"
+                        d:DesignWidth="800"
+                        Width="{StaticResource  PopupWinodwsWidth2}"
+                        Height="{StaticResource PopupWinodwsHeight5}">
+    <Grid  FocusManager.FocusedElement="{Binding ElementName=txt_RoleName}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="5" />
+        </Grid.ColumnDefinitions>
+        <TextBlock  Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{StaticResource RoleName}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Name="txt_RoleName"
+                 Grid.Row="1"
+                 Grid.Column="3"
+                 MaxLength="50"
+                 Metro:TextBoxHelper.Watermark="{StaticResource RoleName}"
+                 Style="{StaticResource ContentTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{StaticResource Authority}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <xctk:CheckComboBox Grid.Row="3"
+                            Grid.Column="3"
+                            ItemsSource="{Binding ModuleList}"
+                            VerticalAlignment="Center"
+                            SelectedMemberPath="Name"
+                            DisplayMemberPath="Name"
+                            SelectedItemsOverride="{Binding SelectedModuleList}"></xctk:CheckComboBox>
+        <TextBlock  Grid.Row="5"
+                    Grid.Column="1"
+                    Text="{StaticResource Remark}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="5"
+                 Grid.Column="3"
+                 MaxLength="50"
+                 Metro:TextBoxHelper.Watermark="{StaticResource RemarkWatermark}"
+                 Style="{StaticResource ContentTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.Remark, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+
+        <!--页面提示消息-->
+        <TextBlock Grid.Row="7"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource UiMessageTextBlockStyle}"
+                   Text="{Binding UiMessage}"></TextBlock>
+        <!--按钮区域-->
+        <Grid Grid.Row="9"
+              Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <pc:ImageButton Grid.Column="0"
+                            Icon="{iconPacks:Material Kind=Check}"
+                            Content="{StaticResource Confirm}"
+                            ToolTip="{StaticResource New}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ConfirmCommand}" />
+            <pc:ImageButton Grid.Column="1"
+                            Icon="{iconPacks:Material Kind=Close}"
+                            Content="{StaticResource Cancel}"
+                            ToolTip="{StaticResource Cancel}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding CancelCommand}" />
+        </Grid>
+
+    </Grid>
+</ucBase:UserControlBase>

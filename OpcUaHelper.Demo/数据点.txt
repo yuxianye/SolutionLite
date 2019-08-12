@@ -1,0 +1,2 @@
+ns=2;s=TestChannel.TestDevice.Agv_TaskStatus;100; False; True; Unknow
+ns=2;s=TestChannel.TestDevice.Agv_PowerLevel

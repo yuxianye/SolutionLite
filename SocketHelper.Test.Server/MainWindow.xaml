@@ -1,0 +1,79 @@
+﻿<Window x:Class="SocketHelper.Test.Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SocketHelper.Test.Server"
+        mc:Ignorable="d"
+        Title="服务端测试助手"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="txt_IP"
+                 Grid.Column="0"
+                 Grid.Row="0"
+                 Text="127.0.0.1"></TextBox>
+        <TextBox x:Name="txt_Port"
+                 Grid.Column="1"
+                 Grid.Row="0"
+                 Text="12150"></TextBox>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"    
+                   HorizontalAlignment="Right"
+                   Text="铸锭号(删除PDI)："></TextBlock>
+
+        <TextBox x:Name="SlabNo"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Text="201809281402584030"></TextBox>
+        
+        <RichTextBox  Grid.Row="2"
+                      Grid.RowSpan="3"
+                      VerticalScrollBarVisibility="Auto"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      x:Name="logRichTextBox"></RichTextBox>
+        
+        <StackPanel Grid.RowSpan=" 5"
+                    Grid.Column="4">
+            <Button x:Name="btn_Connect"
+                    Grid.Column="3"
+                    Content="启动服务"
+                    Click="btn_Connect_Click"></Button>
+            <Button x:Name="btn_SendPDI"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Content="发送PDI"
+                    Click="btn_SendPDI_Click"></Button>
+            
+            <Button x:Name="btn_DeletePdi"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Content="删除PDI"
+                    Click="btn_DeletePdi_Click"></Button>
+            
+            <Button x:Name="btn_ResponsePDO"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Content="生产实绩应答"
+                    Click="btn_ResponsePDO_Click"></Button>
+            <Button x:Name="btn_ResponseException"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Content="异常应答"
+                    Click="btn_ResponseException_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

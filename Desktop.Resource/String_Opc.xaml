@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="OpcServerName">服务器名称</sys:String>
+    <sys:String x:Key="OpcType">类型</sys:String>
+    <sys:String x:Key="Uri">地址</sys:String>
+    <sys:String x:Key="OpcServerSearchTextBoxWatermark">名称/地址/创建人/修改人</sys:String>
+
+    <sys:String x:Key="DeviceNodeName">节点名称</sys:String>
+
+    <sys:String x:Key="NodeSearchTextBoxWatermark">名称/频率/创建人/修改人</sys:String>
+    <sys:String x:Key="UpdateRate">更新频率</sys:String>
+    <sys:String x:Key="DataType">数据类型</sys:String>
+
+</ResourceDictionary>

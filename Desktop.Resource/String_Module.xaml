@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="ModuleName">模块名</sys:String>
+    <sys:String x:Key="ParentId">上级菜单</sys:String>
+    <sys:String x:Key="OrderCode">排序码</sys:String>
+    <sys:String x:Key="ShowInNavigateMenu">导航显示</sys:String>
+    <sys:String x:Key="Icon">图标</sys:String>
+    <sys:String x:Key="AssemblyName">程序集名</sys:String>
+    <sys:String x:Key="ViewName">页面名</sys:String>
+    <sys:String x:Key="ModuleSearchTextBoxWatermark">模块名/程序集名/页面名/创建人/修改人</sys:String>
+
+</ResourceDictionary>

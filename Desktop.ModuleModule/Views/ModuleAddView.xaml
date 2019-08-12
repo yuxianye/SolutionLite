@@ -1,0 +1,208 @@
+﻿<ucBase:UserControlBase x:Class="Desktop.ModuleModule.Views.ModuleAddView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                        xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
+                        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        prism:ViewModelLocator.AutoWireViewModel="True"
+                        mc:Ignorable="d"
+                        d:DesignHeight="450"
+                        d:DesignWidth="800"
+                        Width="{StaticResource  PopupWinodwsWidth2}"
+                        Height="{StaticResource PopupWinodwsHeight10}">
+    <UserControl.Resources>
+        <pc:IconConverter x:Key="iconConverter" />
+    </UserControl.Resources>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=txt_moduleName}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlAreaHeight}" />
+            <RowDefinition Height="{StaticResource InputControlSeparateAreaHeight}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="5" />
+        </Grid.ColumnDefinitions>
+        <TextBlock  Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{StaticResource ParentId}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <ComboBox Grid.Row="1"
+                  Grid.Column="3"
+                  IsEditable="False"
+                  SelectedIndex="{Binding ComboBoxSelectedIndex}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="DropDownClosed">
+                    <i:InvokeCommandAction Command="{Binding ComboBoxDropDownClosedCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ComboBoxItem Visibility="Collapsed"
+                          Foreground="{StaticResource TextBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Content="{Binding SelectedModule.Icon,Converter={StaticResource iconConverter}}"
+                                    Width="16"
+                                    Height="16"></ContentControl>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding SelectedModule.Name,Mode=OneWay}"></TextBlock>
+                </Grid>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <ComboBoxItem.Template>
+                    <ControlTemplate>
+                        <TreeView  ItemsSource="{Binding ModuleList}"
+                                   VerticalAlignment="Stretch">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedItemChanged">
+                                    <i:InvokeCommandAction Command="{Binding Path=ModuleSelectedCommand}"
+                                                           CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TreeView}, Path=SelectedItem, Mode=OneWay}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TreeView>
+                    </ControlTemplate>
+                </ComboBoxItem.Template>
+            </ComboBoxItem>
+        </ComboBox>
+        <TextBlock  Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{StaticResource ModuleName}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Name="txt_moduleName"
+                 Grid.Row="3"
+                 Grid.Column="3"
+                 MaxLength="50"
+                 Metro:TextBoxHelper.Watermark="{StaticResource ModuleName}"
+                 Style="{StaticResource ContentTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="5"
+                    Grid.Column="1"
+                    Text="{StaticResource OrderCode}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="5"
+                 Grid.Column="3"
+                 MaxLength="5"
+                 Metro:TextBoxHelper.Watermark="{StaticResource OrderCode}"
+                 Style="{StaticResource ContentTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.OrderCode, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="7"
+                    Grid.Column="1"
+                    Text="{StaticResource ShowInNavigateMenu}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <Metro:ToggleSwitch Grid.Row="7"
+                            Grid.Column="3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            IsChecked="{Binding CurrentDataModel.ShowInNavigateMenu}"
+                            Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"></Metro:ToggleSwitch>
+        <TextBlock  Grid.Row="9"
+                    Grid.Column="1"
+                    Text="{StaticResource AssemblyName}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="9"
+                 Grid.Column="3"
+                 MaxLength="100"
+                 Metro:TextBoxHelper.Watermark="{StaticResource AssemblyName}"
+                 Metro:TextBoxHelper.ButtonCommand="{Binding AssemblyNameCommand, Mode=OneWay}"
+                 Metro:TextBoxHelper.ButtonContent="{iconPacks:Material Kind=Folder}"
+                 Style="{StaticResource ContentButtonTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.AssemblyName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="11"
+                    Grid.Column="1"
+                    Text="{StaticResource ViewName}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="11"
+                 Grid.Column="3"
+                 MaxLength="100"
+                 Metro:TextBoxHelper.Watermark="{DynamicResource ViewName}"
+                 Metro:TextBoxHelper.ButtonCommand="{Binding ViewNameCommand, Mode=OneWay}"
+                 Metro:TextBoxHelper.ButtonContent="{iconPacks:Material Kind=Folder}"
+                 Style="{StaticResource ContentButtonTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.ViewName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="13"
+                    Grid.Column="1"
+                    Text="{StaticResource Icon}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="13"
+                 Grid.Column="3"
+                 MaxLength="100"
+                 Metro:TextBoxHelper.Watermark="{DynamicResource Icon}"
+                 Metro:TextBoxHelper.ButtonCommand="{Binding IconCommand, Mode=OneWay}"
+                 Metro:TextBoxHelper.ButtonContent="{iconPacks:Material Kind=Folder}"
+                 Style="{StaticResource ContentButtonTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.Icon, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <TextBlock  Grid.Row="15"
+                    Grid.Column="1"
+                    Text="{StaticResource Remark}"
+                    Style="{StaticResource ContentTextBlockAlignmentRightStyle}"></TextBlock>
+        <TextBox Grid.Row="15"
+                 Grid.Column="3"
+                 MaxLength="50"
+                 Metro:TextBoxHelper.Watermark="{StaticResource RemarkWatermark}"
+                 Style="{StaticResource ContentTextBoxStyle}"
+                 Text="{Binding CurrentDataModel.Remark, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+        <!--页面提示消息-->
+        <TextBlock Grid.Row="17"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource UiMessageTextBlockStyle}"
+                   Text="{Binding UiMessage}"></TextBlock>
+        <!--按钮区域-->
+        <Grid Grid.Row="19"
+              Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <pc:ImageButton Grid.Column="0"
+                            Icon="{iconPacks:Material Kind=Check}"
+                            Content="{StaticResource Confirm}"
+                            ToolTip="{StaticResource New}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ConfirmCommand}" />
+            <pc:ImageButton Grid.Column="1"
+                            Icon="{iconPacks:Material Kind=Close}"
+                            Content="{StaticResource Cancel}"
+                            ToolTip="{StaticResource Cancel}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding CancelCommand}" />
+        </Grid>
+
+    </Grid>
+</ucBase:UserControlBase>
