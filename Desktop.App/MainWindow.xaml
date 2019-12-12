@@ -15,7 +15,7 @@
                    TitleTemplate="{StaticResource SolutionTitleTemplate}"
                    WindowStartupLocation="CenterScreen"
                    prism:ViewModelLocator.AutoWireViewModel="True"
-                   Icon="logo-full.png"
+                   Icon="logo.png"
                    ShowDialogsOverTitleBar="False"
                    ShowSystemMenuOnRightClick="True"
                    MinHeight="{StaticResource MainWindowsMinHeight}"

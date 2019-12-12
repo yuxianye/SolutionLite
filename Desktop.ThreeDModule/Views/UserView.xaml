@@ -1,0 +1,157 @@
+﻿<ucBase:UserControlBase x:Class="Desktop.ThreeDModule.Views.UserView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                        xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
+                        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        prism:ViewModelLocator.AutoWireViewModel="True"
+                        mc:Ignorable="d"
+                        d:DesignHeight="450"
+                        d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ViewButtonAreaHeight}" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--按钮-->
+        <StackPanel VerticalAlignment="Center"
+                    Orientation="Horizontal">
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Plus}"
+                            Content="{StaticResource New}"
+                            ToolTip="{StaticResource New}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding AddCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Pencil}"
+                            Content="{StaticResource Edit}"
+                            ToolTip="{StaticResource Edit}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding EditCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Delete}"
+                            Content="{StaticResource Delete}"
+                            ToolTip="{StaticResource Delete}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding DeleteCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Refresh}"
+                            Content="{StaticResource Refresh}"
+                            ToolTip="{StaticResource Refresh}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding RefreshCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Import}"
+                            Content="{StaticResource Import}"
+                            ToolTip="{StaticResource Import}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ImportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Export}"
+                            Content="{StaticResource Export}"
+                            ToolTip="{StaticResource Export}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ExportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Printer}"
+                            Content="{StaticResource Print}"
+                            ToolTip="{StaticResource Print}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding PrintCommand}" />
+            <TextBox x:Name="txtSearch"
+                     Grid.Column="1"
+                     Style="{StaticResource SearchMetroTextBox}"
+                     Margin="{StaticResource ControlMargin6}"
+                     Metro:TextBoxHelper.ButtonCommand="{Binding SearchCommand, Mode=OneWay}"
+                     Metro:TextBoxHelper.ButtonCommandParameter="{Binding ElementName=txtSearch, Path=Text}"
+                     Metro:TextBoxHelper.SelectAllOnFocus="True"
+                     Metro:TextBoxHelper.Watermark="{StaticResource UserSearchTextBoxWatermark}"
+                     Width="{StaticResource SearchTextBoxWidth}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand, Mode=OneWay}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TextBox}, Path=Text, Mode=OneWay}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+        <!--数据表格-->
+        <DataGrid Style="{StaticResource ListDataGridStyle}"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding Path=DataList}"
+                  SelectedItem="{Binding SelectedData}"
+                  Grid.Row="1">
+            <!--F5刷新，右键快捷菜单，双击打开编辑页面-->
+            <DataGrid.InputBindings>
+                <KeyBinding Key="F5"
+                            Command="{Binding Path=RefreshCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
+            <!--右键快捷菜单-->
+            <DataGrid.ContextMenu>
+                <ContextMenu ItemsSource="{Binding MenuItems}"></ContextMenu>
+            </DataGrid.ContextMenu>
+            <!--双击打开编辑页面-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding Path=EditCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Header="{StaticResource Id}"
+                                    Visibility="Collapsed"
+                                    ScrollViewer.CanContentScroll="True"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Name, StringFormat='yyyy-MM-dd HH:mm:ss'}"
+                                    Header="{StaticResource UserName}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding NickName}"
+                                    Header="{StaticResource NickName}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding CreatedTime, StringFormat='yyyy-MM-dd HH:mm:ss'}"
+                                    Header="{DynamicResource CreatedTime}"
+                                    HeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding CreatorUser}"
+                                    Header="{DynamicResource CreatorUser}"
+                                    HeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding LastUpdatedTime, StringFormat='yyyy-MM-dd HH:mm:ss'}"
+                                    Header="{DynamicResource LastUpdatedTime}"
+                                    HeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding LastUpdatorUser}"
+                                    Header="{DynamicResource LastUpdatorUser}"
+                                    HeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" />
+                <DataGridTextColumn Binding="{Binding Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Header="{DynamicResource Remark}"
+                                    Width="*"
+                                    HeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--分页控件-->
+        <StackPanel  Grid.Row="2"
+                     Orientation="Horizontal">
+            <pc:DataPager x:Name="dataPager"
+                          TotalCount="{Binding TotalCounts}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding Path=PageChangedCommand}"
+                                               CommandParameter="{Binding Path=PageChangedEventArgs, ElementName=dataPager}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </pc:DataPager>
+            <!--页面提示消息-->
+            <TextBlock Style="{StaticResource UiMessageTextBlockStyle}"
+                       Text="{Binding UiMessage}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</ucBase:UserControlBase>

@@ -95,12 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SolutionLiteDb-Data.sql" />
-    <Content Include="SolutionLiteDb.sql" />
     <Content Include="SolutionLiteDb.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SolutionLiteDb.sql" />
     <Content Include="SolutionLiteDb_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>SolutionLiteDb.mdf</DependentUpon>
     </Content>
   </ItemGroup>
