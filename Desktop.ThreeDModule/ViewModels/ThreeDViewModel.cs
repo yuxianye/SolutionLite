@@ -19,12 +19,12 @@ namespace Desktop.ThreeDModule.ViewModels
     /// <summary>
     /// 用户管理VM
     /// </summary>
-    public class UserViewModel : Desktop.Core.PageableViewModelBase
+    public class ThreeDViewModel : Desktop.Core.PageableViewModelBase
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public UserViewModel()
+        public ThreeDViewModel()
         {
             initCommand();
             initMenus();

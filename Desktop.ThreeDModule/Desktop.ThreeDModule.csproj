@@ -7,8 +7,8 @@
     <ProjectGuid>{C854F28C-0FBF-4FA8-997F-8EA01D322F90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Desktop.UserModule</RootNamespace>
-    <AssemblyName>Desktop.UserModule</AssemblyName>
+    <RootNamespace>Desktop.ThreeDModule</RootNamespace>
+    <AssemblyName>Desktop.ThreeDModule</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -87,20 +87,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ModifyPasswordViewModel.cs" />
+    <Compile Include="ViewModels\ThreeDViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewModels\UserAddViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\ModifyPasswordView.xaml.cs">
       <DependentUpon>ModifyPasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThreeDView.xaml.cs">
+      <DependentUpon>ThreeDView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserEditView.xaml.cs">
       <DependentUpon>UserEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserAddView.xaml.cs">
       <DependentUpon>UserAddView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ThreeDView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserEditView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,10 +122,6 @@
     <Page Include="Views\UserAddView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
