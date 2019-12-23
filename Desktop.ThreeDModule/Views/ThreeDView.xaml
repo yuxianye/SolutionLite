@@ -9,6 +9,8 @@
                         xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
                         xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
                         xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        xmlns:h="http://helix-toolkit.org/wpf"
+                        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
                         prism:ViewModelLocator.AutoWireViewModel="True"
                         mc:Ignorable="d"
                         d:DesignHeight="450"
@@ -150,45 +152,55 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <!--<hx:Viewport3DX
-            BackgroundColor="Black"
-            Camera="{Binding Camera}"
-            EffectsManager="{Binding EffectsManager}"
-            IsShadowMappingEnabled="True"
-            ShowFrameDetails="True"
-            ShowViewCube="True">
+            <h:HelixViewport3D ZoomExtentsWhenLoaded="True"
+                               Background="LightGray"
+                               IsHeadLightEnabled="True"
+                               ZoomAroundMouseDownPoint="True"
+                               RotateAroundMouseDownPoint="True">
+                
+                
+
+            </h:HelixViewport3D>
+
+            <!--<hx:Viewport3DX BackgroundColor="Black"
+                            Camera="{Binding Camera}"
+                            EffectsManager="{Binding EffectsManager}"
+                            IsShadowMappingEnabled="True"
+                            ShowFrameDetails="True"
+                            ShowViewCube="True">
                 <hx:Viewport3DX.InputBindings>
-                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
-                    <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
-                    <MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />
-                    <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
+                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents"
+                                Gesture="Control+E" />
+                    <MouseBinding Command="hx:ViewportCommands.Rotate"
+                                  Gesture="RightClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Zoom"
+                                  Gesture="MiddleClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Pan"
+                                  Gesture="LeftClick" />
                 </hx:Viewport3DX.InputBindings>
                 <hx:ShadowMap3D OrthoWidth="300" />
                 <hx:AmbientLight3D Color="#414141" />
                 <hx:DirectionalLight3D Direction="50, -200, -100" />
-                <hx:BatchedMeshGeometryModel3D
-                x:Name="batchedMesh"
-                BatchedGeometries="{Binding BatchedMeshes}"
-                BatchedMaterials="{Binding BatchedMaterials}"
-                CullMode="Back"
-                IsThrowingShadow="True"
-                Material="{Binding MainMaterial}"
-                Mouse3DDown="BatchedMeshGeometryModel3D_Mouse3DDown"
-                Transform="{Binding BatchedTransform}" />
-                <hx:MeshGeometryModel3D
-                CullMode="Back"
-                DepthBias="-100"
-                Geometry="{Binding SelectedGeometry}"
-                IsHitTestVisible="False"
-                IsThrowingShadow="False"
-                Material="{Binding SelectedMaterial}"
-                Transform="{Binding SelectedTransform}" />
-                <hx:AxisPlaneGridModel3D
-                AutoSpacing="false"
-                RenderShadowMap="true"
-                Offset="-65" />
-            </hx:Viewport3DX>
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <hx:BatchedMeshGeometryModel3D x:Name="batchedMesh"
+                                               BatchedGeometries="{Binding BatchedMeshes}"
+                                               BatchedMaterials="{Binding BatchedMaterials}"
+                                               CullMode="Back"
+                                               IsThrowingShadow="True"
+                                               Material="{Binding MainMaterial}"
+                                               Transform="{Binding BatchedTransform}" />
+                <hx:MeshGeometryModel3D CullMode="Back"
+                                        DepthBias="-100"
+                                        Geometry="{Binding SelectedGeometry}"
+                                        IsHitTestVisible="False"
+                                        IsThrowingShadow="False"
+                                        Material="{Binding SelectedMaterial}"
+                                        Transform="{Binding SelectedTransform}" />
+                <hx:AxisPlaneGridModel3D AutoSpacing="false"
+                                         RenderShadowMap="true"
+                                         Offset="-65" />
+            </hx:Viewport3DX>-->
+            <!--<StackPanel Grid.Column="1"
+                        Orientation="Vertical">
                 <CheckBox IsChecked="{Binding ElementName=batchedMesh, Path=RenderWireframe}">Wireframe</CheckBox>
             </StackPanel>-->
         </Grid>
