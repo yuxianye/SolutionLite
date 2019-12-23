@@ -9,7 +9,6 @@
                         xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
                         xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
                         xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                        xmlns:h="http://helix-toolkit.org/wpf"
                         xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
                         prism:ViewModelLocator.AutoWireViewModel="True"
                         mc:Ignorable="d"
@@ -24,12 +23,12 @@
         <!--按钮-->
         <StackPanel VerticalAlignment="Center"
                     Orientation="Horizontal">
-            <pc:ImageButton Icon="{iconPacks:Material Kind=Plus}"
-                            Content="{StaticResource New}"
-                            ToolTip="{StaticResource New}"
+            <pc:ImageButton Icon="{iconPacks:Material Kind=FolderOpen}"
+                            Content="{StaticResource Open}"
+                            ToolTip="{StaticResource Open}"
                             Width="{StaticResource ViewButtonWidth}"
                             FontSize="{StaticResource ContentFontSize}"
-                            Command="{Binding AddCommand}" />
+                            Command="{Binding OpenFileCommand}" />
             <pc:ImageButton Icon="{iconPacks:Material Kind=Pencil}"
                             Content="{StaticResource Edit}"
                             ToolTip="{StaticResource Edit}"
@@ -99,6 +98,10 @@
             -->
         <!--F5刷新，右键快捷菜单，双击打开编辑页面-->
         <!--
+                        xmlns:h="http://helix-toolkit.org/wpf"
+        
+                        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+        
             <DataGrid.InputBindings>
                 <KeyBinding Key="F5"
                             Command="{Binding Path=RefreshCommand}"></KeyBinding>
@@ -152,7 +155,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <h:HelixViewport3D ZoomExtentsWhenLoaded="True"
+            <!--<h:HelixViewport3D ZoomExtentsWhenLoaded="True"
                                Background="LightGray"
                                IsHeadLightEnabled="True"
                                ZoomAroundMouseDownPoint="True"
@@ -160,8 +163,79 @@
                 
                 
 
-            </h:HelixViewport3D>
+            </h:HelixViewport3D>-->
+            <hx:Viewport3DX x:Name="view"
+                            Grid.Row="1"
+                            BackgroundColor="#595959"
+                            Camera="{Binding Camera}"
+                            CameraMode="Inspect"
+                            CameraRotationMode="Trackball"
+                            EffectsManager="{Binding EffectsManager}"
+                            FXAALevel="Low">
+                <hx:Viewport3DX.InputBindings>
+                    <KeyBinding Key="B"
+                                Command="hx:ViewportCommands.BackView" />
+                    <KeyBinding Key="F"
+                                Command="hx:ViewportCommands.FrontView" />
+                    <KeyBinding Key="U"
+                                Command="hx:ViewportCommands.TopView" />
+                    <KeyBinding Key="D"
+                                Command="hx:ViewportCommands.BottomView" />
+                    <KeyBinding Key="L"
+                                Command="hx:ViewportCommands.LeftView" />
+                    <KeyBinding Key="R"
+                                Command="hx:ViewportCommands.RightView" />
+                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents"
+                                Gesture="Control+E" />
+                    <MouseBinding Command="hx:ViewportCommands.Rotate"
+                                  Gesture="RightClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Zoom"
+                                  Gesture="MiddleClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Pan"
+                                  Gesture="LeftClick" />
+                </hx:Viewport3DX.InputBindings>
+                <hx:AmbientLight3D Color="#363636" />
+                <hx:DirectionalLight3D Direction="{Binding Camera.LookDirection}"
+                                       Color="#D6D6D6" />
+                <hx:EnvironmentMap3D IsRendering="{Binding RenderEnvironmentMap}"
+                                     Texture="{Binding EnvironmentMap}" />
+                <hx:Element3DPresenter Content="{Binding GroupModel}" />
+                <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
+            </hx:Viewport3DX>
 
+            <ScrollViewer Grid.Column="1">
+                <TreeView ItemsSource="{Binding GroupModel.GroupNode.Items}">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="IsSelected"
+                                    Value="{Binding Tag.Selected, Mode=TwoWay}" />
+                            <Setter Property="IsExpanded"
+                                    Value="{Binding Tag.Expanded, Mode=TwoWay}" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                            <TextBlock Text="{Binding Name}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Setters>
+                                            <Setter Property="Foreground"
+                                                    Value="Black" />
+                                        </Style.Setters>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsAnimationNode}"
+                                                         Value="true">
+                                                <Setter Property="Foreground"
+                                                        Value="Blue" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </ScrollViewer>
             <!--<hx:Viewport3DX BackgroundColor="Black"
                             Camera="{Binding Camera}"
                             EffectsManager="{Binding EffectsManager}"

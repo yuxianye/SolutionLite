@@ -9,7 +9,7 @@
     <sys:String x:Key="Cancel">取消</sys:String>
     <sys:String x:Key="UiMessage">初始化完成</sys:String>
     <sys:String x:Key="New">新建</sys:String>
-    <sys:String x:Key="NewMap">新建设备刀具关联</sys:String>
+    <sys:String x:Key="Open">打开</sys:String>
     <sys:String x:Key="EquKnifMap">关联刀具</sys:String>
     <sys:String x:Key="Edit">编辑</sys:String>
     <sys:String x:Key="Delete">删除</sys:String>
