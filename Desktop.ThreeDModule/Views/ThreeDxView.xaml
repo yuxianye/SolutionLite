@@ -1,0 +1,231 @@
+﻿<ucBase:UserControlBase x:Class="Desktop.ThreeDModule.Views.ThreeDxView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                        xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
+                        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+                        prism:ViewModelLocator.AutoWireViewModel="True"
+                        mc:Ignorable="d"
+                        d:DesignHeight="450"
+                        d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ViewButtonAreaHeight}" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--按钮-->
+        <StackPanel VerticalAlignment="Center"
+                    Orientation="Horizontal">
+            <pc:ImageButton Icon="{iconPacks:Material Kind=FolderOpen}"
+                            Content="{StaticResource Open}"
+                            ToolTip="{StaticResource Open}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding OpenFileCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Pencil}"
+                            Content="{StaticResource Edit}"
+                            ToolTip="{StaticResource Edit}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding EditCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Delete}"
+                            Content="{StaticResource Delete}"
+                            ToolTip="{StaticResource Delete}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding DeleteCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Refresh}"
+                            Content="{StaticResource Refresh}"
+                            ToolTip="{StaticResource Refresh}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding RefreshCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Import}"
+                            Content="{StaticResource Import}"
+                            ToolTip="{StaticResource Import}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ImportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Export}"
+                            Content="{StaticResource Export}"
+                            ToolTip="{StaticResource Export}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ExportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Printer}"
+                            Content="{StaticResource Print}"
+                            ToolTip="{StaticResource Print}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding PrintCommand}" />
+            <TextBox x:Name="txtSearch"
+                     Grid.Column="1"
+                     Style="{StaticResource SearchMetroTextBox}"
+                     Margin="{StaticResource ControlMargin6}"
+                     Metro:TextBoxHelper.ButtonCommand="{Binding SearchCommand, Mode=OneWay}"
+                     Metro:TextBoxHelper.ButtonCommandParameter="{Binding ElementName=txtSearch, Path=Text}"
+                     Metro:TextBoxHelper.SelectAllOnFocus="True"
+                     Metro:TextBoxHelper.Watermark="{StaticResource UserSearchTextBoxWatermark}"
+                     Width="{StaticResource SearchTextBoxWidth}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand, Mode=OneWay}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TextBox}, Path=Text, Mode=OneWay}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+
+
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <hx:Viewport3DX x:Name="view"
+                            Grid.Row="1"
+                            BackgroundColor="#595959"
+                            Camera="{Binding Camera}"
+                            CameraMode="Inspect"
+                            CameraRotationMode="Trackball"
+                            EffectsManager="{Binding EffectsManager}"
+                            FXAALevel="Low">
+                <hx:Viewport3DX.InputBindings>
+                    <KeyBinding Key="B"
+                                Command="hx:ViewportCommands.BackView" />
+                    <KeyBinding Key="F"
+                                Command="hx:ViewportCommands.FrontView" />
+                    <KeyBinding Key="U"
+                                Command="hx:ViewportCommands.TopView" />
+                    <KeyBinding Key="D"
+                                Command="hx:ViewportCommands.BottomView" />
+                    <KeyBinding Key="L"
+                                Command="hx:ViewportCommands.LeftView" />
+                    <KeyBinding Key="R"
+                                Command="hx:ViewportCommands.RightView" />
+                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents"
+                                Gesture="Control+E" />
+                    <MouseBinding Command="hx:ViewportCommands.Rotate"
+                                  Gesture="RightClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Zoom"
+                                  Gesture="MiddleClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Pan"
+                                  Gesture="LeftClick" />
+                </hx:Viewport3DX.InputBindings>
+                <hx:AmbientLight3D Color="#363636" />
+                <hx:DirectionalLight3D Direction="{Binding Camera.LookDirection}"
+                                       Color="#D6D6D6" />
+                <hx:EnvironmentMap3D IsRendering="{Binding RenderEnvironmentMap}"
+                                     Texture="{Binding EnvironmentMap}" />
+                <hx:Element3DPresenter Content="{Binding GroupModel}" />
+                <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
+            </hx:Viewport3DX>
+
+            <ScrollViewer Grid.Column="1">
+                <TreeView ItemsSource="{Binding GroupModel.GroupNode.Items}">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="IsSelected"
+                                    Value="{Binding Tag.Selected, Mode=TwoWay}" />
+                            <Setter Property="IsExpanded"
+                                    Value="{Binding Tag.Expanded, Mode=TwoWay}" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                            <TextBlock Text="{Binding Name}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Setters>
+                                            <Setter Property="Foreground"
+                                                    Value="Black" />
+                                        </Style.Setters>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsAnimationNode}"
+                                                         Value="true">
+                                                <Setter Property="Foreground"
+                                                        Value="Blue" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </ScrollViewer>
+            <!--<hx:Viewport3DX BackgroundColor="Black"
+                            Camera="{Binding Camera}"
+                            EffectsManager="{Binding EffectsManager}"
+                            IsShadowMappingEnabled="True"
+                            ShowFrameDetails="True"
+                            ShowViewCube="True">
+                <hx:Viewport3DX.InputBindings>
+                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents"
+                                Gesture="Control+E" />
+                    <MouseBinding Command="hx:ViewportCommands.Rotate"
+                                  Gesture="RightClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Zoom"
+                                  Gesture="MiddleClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Pan"
+                                  Gesture="LeftClick" />
+                </hx:Viewport3DX.InputBindings>
+                <hx:ShadowMap3D OrthoWidth="300" />
+                <hx:AmbientLight3D Color="#414141" />
+                <hx:DirectionalLight3D Direction="50, -200, -100" />
+                <hx:BatchedMeshGeometryModel3D x:Name="batchedMesh"
+                                               BatchedGeometries="{Binding BatchedMeshes}"
+                                               BatchedMaterials="{Binding BatchedMaterials}"
+                                               CullMode="Back"
+                                               IsThrowingShadow="True"
+                                               Material="{Binding MainMaterial}"
+                                               Transform="{Binding BatchedTransform}" />
+                <hx:MeshGeometryModel3D CullMode="Back"
+                                        DepthBias="-100"
+                                        Geometry="{Binding SelectedGeometry}"
+                                        IsHitTestVisible="False"
+                                        IsThrowingShadow="False"
+                                        Material="{Binding SelectedMaterial}"
+                                        Transform="{Binding SelectedTransform}" />
+                <hx:AxisPlaneGridModel3D AutoSpacing="false"
+                                         RenderShadowMap="true"
+                                         Offset="-65" />
+            </hx:Viewport3DX>-->
+            <!--<StackPanel Grid.Column="1"
+                        Orientation="Vertical">
+                <CheckBox IsChecked="{Binding ElementName=batchedMesh, Path=RenderWireframe}">Wireframe</CheckBox>
+            </StackPanel>-->
+        </Grid>
+        <!--分页控件-->
+        <!--<StackPanel  Grid.Row="2"
+                     Orientation="Horizontal">
+            <pc:DataPager x:Name="dataPager"
+                          TotalCount="{Binding TotalCounts}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding Path=PageChangedCommand}"
+                                               CommandParameter="{Binding Path=PageChangedEventArgs, ElementName=dataPager}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </pc:DataPager>
+            -->
+        <!--页面提示消息-->
+        <!--
+            <TextBlock Style="{StaticResource UiMessageTextBlockStyle}"
+                       Text="{Binding UiMessage}"></TextBlock>
+        </StackPanel>-->
+    </Grid>
+</ucBase:UserControlBase>

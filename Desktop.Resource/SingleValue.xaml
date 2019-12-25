@@ -59,8 +59,8 @@
     <!--圆形按钮高宽-->
     <sys:Double x:Key="CircleButtonWidth">32</sys:Double>
     <sys:Double x:Key="CircleButtonHeight">32</sys:Double>
-    <sys:Double x:Key="CircleButtonIconWidth">3</sys:Double>
-    <sys:Double x:Key="CircleButtonIconHeight">3</sys:Double>
+    <sys:Double x:Key="CircleButtonIconWidth">16</sys:Double>
+    <sys:Double x:Key="CircleButtonIconHeight">16</sys:Double>
 
     <sys:Double x:Key="DataPageCircleButtonWidth">35</sys:Double>
     <sys:Double x:Key="DataPageCircleButtonHeight">35</sys:Double>

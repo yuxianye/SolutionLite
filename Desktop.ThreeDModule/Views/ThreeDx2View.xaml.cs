@@ -3,9 +3,9 @@
     /// <summary>
     /// 用户管理页面
     /// </summary>
-    public partial class ThreeDView
+    public partial class ThreeDx2View
     {
-        public ThreeDView()
+        public ThreeDx2View()
         {
             InitializeComponent();
         }

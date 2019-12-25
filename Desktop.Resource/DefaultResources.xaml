@@ -13,6 +13,7 @@
         <ResourceDictionary Source="ControlResource.xaml" />
         <ResourceDictionary Source="ShapeBrush.xaml" />
         <ResourceDictionary Source="SingleValue.xaml" />
+        <ResourceDictionary Source="String_3D.xaml" />
         <ResourceDictionary Source="String_AppLog.xaml" />
         <ResourceDictionary Source="String_Login.xaml" />
         <ResourceDictionary Source="String_Module.xaml" />

@@ -31,7 +31,7 @@ namespace Desktop.ThreeDModule.ViewModels
     /// <summary>
     /// 用户管理VM
     /// </summary>
-    public class ThreeDViewModel : Desktop.Core.PageableViewModelBase
+    public class ThreeDxViewModel : Desktop.Core.PageableViewModelBase
     {
         /// <summary>
         /// 构造函数
@@ -251,7 +251,7 @@ namespace Desktop.ThreeDModule.ViewModels
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ThreeDViewModel()
+        public ThreeDxViewModel()
         {
             // on camera changed callback
             CameraModelChanged += (s, e) =>
@@ -289,7 +289,7 @@ namespace Desktop.ThreeDModule.ViewModels
                 (Camera as OrthographicCamera).NearPlaneDistance = 0.1f;
             });
             ExportCommand = new DelegateCommand(() => { ExportFile(); });
-            EnvironmentMap = LoadFileToMemory("Cubemap_Grandcanyon.dds");
+            //EnvironmentMap = LoadFileToMemory("Cubemap_Grandcanyon.dds");
 
             ResetCameraCommand = new DelegateCommand(() =>
             {
