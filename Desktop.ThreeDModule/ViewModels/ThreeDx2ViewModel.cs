@@ -485,7 +485,54 @@ namespace Desktop.ThreeDModule.ViewModels
     }
 
 
+    /// <summary>
+    /// Provide your own view model to manipulate the scene nodes
+    /// </summary>
+    /// <seealso cref="DemoCore.ObservableObject" />
+    public class AttachedNodeViewModel : ViewModelBase
+    {
+        private bool selected = false;
+        public bool Selected
+        {
+            set
+            {
+                if (SetProperty(ref selected, value))
+                {
+                    if (node is MeshNode m)
+                    {
+                        m.PostEffects = value ? $"highlight[color:#FFFF00]" : "";
+                        foreach (var n in node.TraverseUp())
+                        {
+                            if (n.Tag is AttachedNodeViewModel vm)
+                            {
+                                vm.Expanded = true;
+                            }
+                        }
+                    }
+                }
+            }
+            get => selected;
+        }
 
+        private bool expanded = false;
+        public bool Expanded
+        {
+            set => SetProperty(ref expanded, value);
+            get => expanded;
+        }
+
+        public bool IsAnimationNode { get => node.IsAnimationNode; }
+
+        public string Name { get => node.Name; }
+
+        private SceneNode node;
+
+        public AttachedNodeViewModel(SceneNode node)
+        {
+            this.node = node;
+            node.Tag = this;
+        }
+    }
 
 
 }

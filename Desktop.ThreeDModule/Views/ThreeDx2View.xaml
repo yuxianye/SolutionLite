@@ -102,6 +102,7 @@
                             CameraMode="Inspect"
                             CameraRotationMode="Trackball"
                             EffectsManager="{Binding EffectsManager}"
+                            ShowCoordinateSystem="True"
                             FXAALevel="Low">
                 <hx:Viewport3DX.InputBindings>
                     <KeyBinding Key="B"

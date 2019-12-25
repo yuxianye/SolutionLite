@@ -133,6 +133,7 @@ namespace Desktop.ThreeDModule.ViewModels
 
             mainContent.Children.Add(modelVisual3D);
             mainContent.InputBindings.Add(new MouseBinding(this.PointSelectionCommand, new MouseGesture(MouseAction.LeftClick)));
+            mainContent.ZoomExtents();
 
         }
 
