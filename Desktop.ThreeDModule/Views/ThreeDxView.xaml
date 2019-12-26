@@ -14,105 +14,42 @@
                         mc:Ignorable="d"
                         d:DesignHeight="450"
                         d:DesignWidth="800">
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource ViewButtonAreaHeight}" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Content="{Binding MainContent}">
+        </ContentControl>
         <!--按钮-->
-        <StackPanel VerticalAlignment="Center"
-                    Orientation="Horizontal">
-            <pc:ImageButton Icon="{iconPacks:Material Kind=FolderOpen}"
-                            Content="{StaticResource Open}"
-                            ToolTip="{StaticResource Open}"
-                            Width="{StaticResource ViewButtonWidth}"
-                            FontSize="{StaticResource ContentFontSize}"
-                            Command="{Binding OpenFileCommand}" />
+        <StackPanel  Grid.Row="0"
+                    
+                     HorizontalAlignment="Center"
+                Orientation="Horizontal"   >
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource CircleButtonStyle}"
+                    ToolTip="{DynamicResource Open}"
+                    Command="{Binding OpenFileCommand }">
+                <iconPacks:PackIconMaterial Width="{DynamicResource CircleButtonIconWidth}"
+                                            Height="{DynamicResource CircleButtonIconHeight}"
+                                            Kind="FolderOpen" />
+            </Button>
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource CircleButtonStyle}"
+                    ToolTip="{DynamicResource DefaultViewPosition}"
+                    Command="{Binding DefaultViewPositionCommand }">
+                <iconPacks:PackIconMaterial Width="{DynamicResource CircleButtonIconWidth}"
+                                            Height="{DynamicResource CircleButtonIconHeight}"
+                                            Kind="ArrowAll" />
+            </Button>
 
         </StackPanel>
-
-
-        <Grid  Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!--<ContentControl Content="{Binding MainContent}">
-
-            </ContentControl>-->
-            <hx:Viewport3DX BackgroundColor="AliceBlue" ShowCoordinateSystem="True" ShowCameraInfo="True" ShowViewCube="True">
-                
-            </hx:Viewport3DX>
-            <hx:Viewport3DX x:Name="view"
-                            Grid.Row="1"
-                            BackgroundColor="#595959"
-                            Camera="{Binding Camera}"
-                            CameraMode="Inspect"
-                            CameraRotationMode="Trackball"
-                            EffectsManager="{Binding EffectsManager}"
-                            FXAALevel="Low">
-                <hx:Viewport3DX.InputBindings>
-                    <KeyBinding Key="B"
-                                Command="hx:ViewportCommands.BackView" />
-                    <KeyBinding Key="F"
-                                Command="hx:ViewportCommands.FrontView" />
-                    <KeyBinding Key="U"
-                                Command="hx:ViewportCommands.TopView" />
-                    <KeyBinding Key="D"
-                                Command="hx:ViewportCommands.BottomView" />
-                    <KeyBinding Key="L"
-                                Command="hx:ViewportCommands.LeftView" />
-                    <KeyBinding Key="R"
-                                Command="hx:ViewportCommands.RightView" />
-                    <KeyBinding Command="hx:ViewportCommands.ZoomExtents"
-                                Gesture="Control+E" />
-                    <MouseBinding Command="hx:ViewportCommands.Rotate"
-                                  Gesture="RightClick" />
-                    <MouseBinding Command="hx:ViewportCommands.Zoom"
-                                  Gesture="MiddleClick" />
-                    <MouseBinding Command="hx:ViewportCommands.Pan"
-                                  Gesture="LeftClick" />
-                </hx:Viewport3DX.InputBindings>
-                <hx:AmbientLight3D Color="#363636" />
-                <hx:DirectionalLight3D Direction="{Binding Camera.LookDirection}"
-                                       Color="#D6D6D6" />
-                <hx:EnvironmentMap3D IsRendering="{Binding RenderEnvironmentMap}"
-                                     Texture="{Binding EnvironmentMap}" />
-                <hx:Element3DPresenter Content="{Binding GroupModel}" />
-                <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
-            </hx:Viewport3DX>
-            <!--<Grid Background="#7B363636"
-                  Visibility="{Binding IsLoading, Converter={StaticResource boolToVisibilityConverter}}">
-                <StackPanel HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Vertical">
-                    <TextBlock Foreground="White">Loading Model</TextBlock>
-                    <ProgressBar Grid.Row="1"
-                                 Width="200"
-                                 Height="30"
-                                 IsIndeterminate="True" />
-                </StackPanel>
-            </Grid>-->
-        </Grid>
-        <!--分页控件-->
-        <!--<StackPanel  Grid.Row="2"
-                     Orientation="Horizontal">
-            <pc:DataPager x:Name="dataPager"
-                          TotalCount="{Binding TotalCounts}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PageChanged">
-                        <i:InvokeCommandAction Command="{Binding Path=PageChangedCommand}"
-                                               CommandParameter="{Binding Path=PageChangedEventArgs, ElementName=dataPager}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </pc:DataPager>
-            -->
-        <!--页面提示消息-->
-        <!--
-            <TextBlock Style="{StaticResource UiMessageTextBlockStyle}"
-                       Text="{Binding UiMessage}"></TextBlock>
-        </StackPanel>-->
+        
     </Grid>
 </ucBase:UserControlBase>
