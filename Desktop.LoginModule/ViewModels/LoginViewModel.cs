@@ -103,13 +103,50 @@ namespace Desktop.LoginModule.ViewModels
         /// </summary>
         public DelegateCommand LoginCommand { get; private set; }
 
+
+
+
+
         /// <summary>
         /// 登陆命令执行函数
         /// </summary>
         private void executeLoginCommand()
         {
+            AuthenticateModel authenticateModel = new Models.AuthenticateModel()
+            {
+                UserNameOrEmailAddress = "admin",
+                Password = "123qwe",
+                RememberClient = true,
+            };
+
+            var obj = Utility.HttpClientHelper.PostResponse<AjaxResponse<AuthenticateResultModel>>(
+                Utility.ConfigHelper.GetAppSetting("ApiUri") + @"/TokenAuth/Authenticate",
+                Utility.JsonHelper.ToJson(authenticateModel));
+
+
+            //() => (Utility.Http.HttpClientHelper.PostResponse<OperationResult<PageResult<MenuModule>>>(GlobalData.ServerRootUri + "Identity/Login", Utility.JsonHelper.ToJson(LoginUser)))
+
+
+
+
+
+
+
+
+
+
+
             isCanExecuteLoginCommand = false;
             LoginCommand.RaiseCanExecuteChanged();
+
+
+
+
+
+
+
+
+
 
             Task.Factory.StartNew(() =>
             {
