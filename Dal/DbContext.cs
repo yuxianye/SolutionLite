@@ -21,6 +21,8 @@ namespace Dal
             //LogHelper.Logger.Debug(Utility.Security.AESEncrypt(Utility.ConfigHelper.GetAppSetting("ConnectionStringDebug")));
 #else
             connectionString = Utility.Security.AESDecrypt(Utility.ConfigHelper.GetAppSetting("ConnectionString"));
+            connectionString = Utility.ConfigHelper.GetAppSetting("ConnectionStringDebug");
+
 #endif
             Db = new SqlSugarClient(new ConnectionConfig()
             {
