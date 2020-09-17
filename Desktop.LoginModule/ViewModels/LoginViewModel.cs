@@ -119,9 +119,9 @@ namespace Desktop.LoginModule.ViewModels
                 RememberClient = true,
             };
 
-            var obj = Utility.HttpClientHelper.PostResponse<AjaxResponse<AuthenticateResultModel>>(
-                Utility.ConfigHelper.GetAppSetting("ApiUri") + @"/TokenAuth/Authenticate",
-                Utility.JsonHelper.ToJson(authenticateModel));
+            //var obj = Utility.HttpClientHelper.PostResponse<AjaxResponse<AuthenticateResultModel>>(
+            //    Utility.ConfigHelper.GetAppSetting("ApiUri") + @"/TokenAuth/Authenticate",
+            //    Utility.JsonHelper.ToJson(authenticateModel));
 
 
             //() => (Utility.Http.HttpClientHelper.PostResponse<OperationResult<PageResult<MenuModule>>>(GlobalData.ServerRootUri + "Identity/Login", Utility.JsonHelper.ToJson(LoginUser)))

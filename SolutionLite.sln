@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpcUaHelper.Demo", "OpcUaHe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop.ThreeDModule", "Desktop.ThreeDModule\Desktop.ThreeDModule.csproj", "{C854F28C-0FBF-4FA8-997F-8EA01D322F90}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{6D4D7BF2-3E56-47F3-93A3-B2A38DA888B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
