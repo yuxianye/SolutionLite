@@ -263,7 +263,7 @@ namespace OpcHelper
                         OnLogHappened(this, new OpcLogEventArgs("Opc服务器已断开"));
                     }
                 }
-                if (!Equals(this.opcServer.Subscriptions, null) && this.opcServer.Subscriptions.Count > 0)
+                if (!Equals(this.opcServer?.Subscriptions, null) && this.opcServer?.Subscriptions.Count > 0)
                 {
                     foreach (Opc.Da.Subscription thisSubscription in this.opcServer.Subscriptions)
                     {

@@ -134,8 +134,8 @@ DELETE FROM [dbo].[OpcServer]
 GO
 
 INSERT INTO [dbo].[OpcServer]([Id],[Name],[Uri],[OpcType],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('01000000-0000-0000-0000-000000000000',N'Opc经典','Kepware.KEPServerEX.V6',1,1,getdate(),'admin',getdate(),'admin',null)
-INSERT INTO [dbo].[OpcServer]([Id],[Name],[Uri],[OpcType],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02000000-0000-0000-0000-000000000000',N'OpcUa_KEPServerEX_Local','opc.tcp://192.168.1.198:49320',2,1,getdate(),'admin',getdate(),'admin',null)
-INSERT INTO [dbo].[OpcServer]([Id],[Name],[Uri],[OpcType],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('03000000-0000-0000-0000-000000000000',N'OpcUa_KEPServerEX','opc.tcp://192.168.1.234:49320',2,1,getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[OpcServer]([Id],[Name],[Uri],[OpcType],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02000000-0000-0000-0000-000000000000',N'OpcUa_KEPServerEX_Local','opc.tcp://127.0.0.1:49320',2,1,getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[OpcServer]([Id],[Name],[Uri],[OpcType],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('03000000-0000-0000-0000-000000000000',N'OpcUa_KEPServerEX','opc.tcp://localhost:49320',2,1,getdate(),'admin',getdate(),'admin',null)
 GO
 
 --点表测试数据 
@@ -156,6 +156,8 @@ INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate]
 --INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),'03000000-0000-0000-0000-000000000000','Channel_1.Device_1.Bool_000'+CAST(@ct as nvarchar),8,100,1,getdate(),'admin',getdate(),'admin',null)
 INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),'03000000-0000-0000-0000-000000000000','ns=2;s=TestChannel.TestDevice.Agv_SettingSpeed'+CAST(@ct as nvarchar),8,100,1,getdate(),'admin',getdate(),'admin',null)
 INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),'03000000-0000-0000-0000-000000000000','TestChannel.TestDevice.Agv_TaskStatus'+CAST(@ct as nvarchar),8,100,1,getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),'03000000-0000-0000-0000-000000000000',N'ns=2;s=数据类型示例.8 位设备.R 寄存器.Short1',8,100,1,getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),'03000000-0000-0000-0000-000000000000',N'ns=2;s=数据类型示例.8 位设备.R 寄存器.Short2',8,100,1,getdate(),'admin',getdate(),'admin',null)
 
 
 SET @ct=@ct+1

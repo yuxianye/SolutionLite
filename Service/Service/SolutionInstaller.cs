@@ -25,9 +25,9 @@ namespace Service
             //this.serviceProcessInstaller.Password = null;
             //this.serviceProcessInstaller.Username = null;
             // 设定服务的名称            
-            this.serviceInstaller.ServiceName = "慧远数采服务";
-            serviceInstaller.Description = "慧远数采服务";
-            serviceInstaller.DisplayName = "慧远数采服务";
+            this.serviceInstaller.ServiceName = "数采服务";
+            serviceInstaller.Description = "数采服务";
+            serviceInstaller.DisplayName = "数采服务";
             //设定服务启动的方式            
             this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.Installers.AddRange(new System.Configuration.Install.Installer[] { this.serviceProcessInstaller, this.serviceInstaller });

@@ -113,6 +113,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <pc:ImageButton Grid.Column="0"
                             Icon="{iconPacks:Material Kind=Check}"
@@ -122,6 +123,13 @@
                             FontSize="{StaticResource ContentFontSize}"
                             Command="{Binding ConfirmCommand}" />
             <pc:ImageButton Grid.Column="1"
+                           Icon="{iconPacks:Material Kind=TransitConnection}"
+                           Content="{StaticResource ConnectTest}"
+                           ToolTip="{StaticResource ConnectTest}"
+                           Width="{StaticResource ViewButtonWidth}"
+                           FontSize="{StaticResource ContentFontSize}"
+                           Command="{Binding ConnectTestCommand}" />
+            <pc:ImageButton Grid.Column="2"
                             Icon="{iconPacks:Material Kind=Close}"
                             Content="{StaticResource Cancel}"
                             ToolTip="{StaticResource Cancel}"

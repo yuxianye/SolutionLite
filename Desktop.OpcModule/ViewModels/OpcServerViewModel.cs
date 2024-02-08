@@ -445,7 +445,7 @@ namespace Desktop.OpcModule.ViewModels
                      }
                      //根据条件查询分页数据
                      DataList = new ObservableCollection<OpcServer>(dbContext.OpcServerDb.GetPageList(expression,
-                          new PageModel() { PageIndex = pageIndex, PageSize = pageSize }, a => a.LastUpdatedTime, OrderByType.Desc));
+                          new PageModel() { PageIndex = pageIndex, PageSize = pageSize }, a => a.CreatedTime, OrderByType.Desc));
                      TotalCounts = dbContext.OpcServerDb.Count(expression);
                      UiMessage = "数据加载完成";
                  }

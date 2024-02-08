@@ -74,7 +74,7 @@ namespace OpcUaHelper.Demo
         #endregion
 
 
-        #region 舒适化数据和变量
+        #region 初始化数据和变量
 
         /// <summary>
         /// 初始化ua实例

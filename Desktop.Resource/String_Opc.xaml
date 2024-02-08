@@ -11,5 +11,6 @@
     <sys:String x:Key="NodeSearchTextBoxWatermark">名称/频率/创建人/修改人</sys:String>
     <sys:String x:Key="UpdateRate">更新频率</sys:String>
     <sys:String x:Key="DataType">数据类型</sys:String>
+    <sys:String x:Key="ConnectTest">测试连接</sys:String>
 
 </ResourceDictionary>

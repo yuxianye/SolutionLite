@@ -232,7 +232,7 @@ namespace Service
         {
             try
             {
-                LogHelper.Logger.Info("慧远Api服务开始启动");
+                LogHelper.Logger.Info("Api服务开始启动");
                 var thisServerUri = Utility.ConfigHelper.GetAppSetting("ThisServerUri");
                 LogHelper.Logger.Info("成功读取Api配置文件服务器地址：" + thisServerUri);
                 var config = new HttpSelfHostConfiguration(thisServerUri);
@@ -240,7 +240,7 @@ namespace Service
                 LogHelper.Logger.Info("路由配置：" + "DefaultApi," + "api/{controller}/{id}");
                 httpSelfHostServer = new HttpSelfHostServer(config);
                 httpSelfHostServer?.OpenAsync()?.Wait();
-                LogHelper.Logger.Info("慧远Api服务启动成功");
+                LogHelper.Logger.Info("Api服务启动成功");
                 return true;
             }
             catch (Exception ex)
@@ -258,7 +258,7 @@ namespace Service
         {
             try
             {
-                LogHelper.Logger.Info("慧远调度服务开始启动");
+                LogHelper.Logger.Info("调度服务开始启动");
 
                 foreach (var opcServer in dbContext.OpcServerDb.GetList(a => a.IsEnable == true && a.OpcType == Models.OpcType.OpcUa))
                 {
@@ -290,7 +290,7 @@ namespace Service
                         opcUaClientHelper.OnDataChanged += OpcUaClientHelper_OnDataChanged;
                         DispatchingHandler = new dispatchingDelegate(dispatchingExecute);
                         OpcUaHelper.OpcUaStatusCodes opcUaStatusCodes = await opcUaClientHelper.ConnectAsync();
-                        LogHelper.Logger.Info($"慧远调度服务启动结果：{opcUaStatusCodes}，{opcServer.Name }，{opcServer.Uri}");
+                        LogHelper.Logger.Info($"调度服务启动结果：{opcUaStatusCodes}，{opcServer.Name }，{opcServer.Uri}");
                         var nd = from a in nodes
                                  select new OpcUaHelper.OpcUaDataItem
                                  {
@@ -303,7 +303,7 @@ namespace Service
                     }
                 }
 
-                LogHelper.Logger.Info("慧远调度服务启动成功");
+                LogHelper.Logger.Info("调度服务启动成功");
                 return true;
             }
             catch (Exception ex)

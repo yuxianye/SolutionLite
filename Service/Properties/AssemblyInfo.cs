@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("慧远服务")]
+[assembly: AssemblyTitle("服务")]
 [assembly: AssemblyDescription("提供webapi、socket、设备通讯等服务")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("huiyuanrobot")]
-[assembly: AssemblyProduct("慧远服务")]
+[assembly: AssemblyProduct("服务")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

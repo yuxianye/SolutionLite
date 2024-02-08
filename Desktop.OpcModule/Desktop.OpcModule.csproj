@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -216,6 +217,14 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{32b64a4d-f4cc-4811-94d8-81cb5bfef01b}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcHelper\OpcHelper.csproj">
+      <Project>{23414576-6afc-49c0-816f-aa572cbba2c5}</Project>
+      <Name>OpcHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcUaHelper\OpcUaHelper.csproj">
+      <Project>{2d4e7c6f-1b0b-49f4-a9e6-a267866ba5a9}</Project>
+      <Name>OpcUaHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{af3354eb-92a0-42b7-af92-2fd0ab7c4042}</Project>
