@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="FtpHelper.cs" />
     <Compile Include="HttpClientHelper.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="OAuth\GrantTypes.cs" />
