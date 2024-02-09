@@ -1,4 +1,5 @@
 ﻿using OpcUaHelper;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -276,7 +277,7 @@ namespace Service
                                      OpcUaStatusCodes = OpcUaStatusCodes.Bad
                                  };
                         var result = await opcUaClientHelper.RegisterNodes(nd.ToList());
-                        LogHelper.Logger.Info($"更新节点结果：{result}，{opcServer.Name }，{opcServer.Uri}");
+                        LogHelper.Logger.Info($"更新节点结果：{result}，{opcServer.Name}，{opcServer.Uri}");
                     }
                     else//没有此ua服务器，那么新增
                     {
@@ -290,7 +291,7 @@ namespace Service
                         opcUaClientHelper.OnDataChanged += OpcUaClientHelper_OnDataChanged;
                         DispatchingHandler = new dispatchingDelegate(dispatchingExecute);
                         OpcUaHelper.OpcUaStatusCodes opcUaStatusCodes = await opcUaClientHelper.ConnectAsync();
-                        LogHelper.Logger.Info($"调度服务启动结果：{opcUaStatusCodes}，{opcServer.Name }，{opcServer.Uri}");
+                        LogHelper.Logger.Info($"调度服务启动结果：{opcUaStatusCodes}，{opcServer.Name}，{opcServer.Uri}");
                         var nd = from a in nodes
                                  select new OpcUaHelper.OpcUaDataItem
                                  {
@@ -317,18 +318,53 @@ namespace Service
 
         private dispatchingDelegate DispatchingHandler;
 
+        //Dal.DbContext dbContext = new Dal.DbContext();
+
+
         private bool dispatchingExecute(object sender, OpcUaDataEventArgs opcUaDataEventArgs)
         {
-            Dal.DbContext dbContext = new Dal.DbContext();
             //LogHelper.Logger.Info($"日志数量：{opcUaDataEventArgs}");
             //opcUaDataEventArgs.
-            System.Threading.Thread.Sleep(2000);
+            //System.Threading.Thread.Sleep(2000);
             //LogHelper.Logger.Info($"日志数量：{dbContext.AppLogDb.AsQueryable().Count()}");
             //this.opcUaClientHelperList;
             //opcUaDataEventArgs.
             Task.Factory.StartNew(() =>
             {
-                LogHelper.Logger.Info($"{sender.ToString()},节点：{opcUaDataEventArgs.OpcUaDataItem.ToString()}");
+                //LogHelper.Logger.Info($"{sender.ToString()},节点：{opcUaDataEventArgs.OpcUaDataItem.ToString()}");
+
+                if (opcUaDataEventArgs.OpcUaDataItem.Name.Equals("ns=2;s=数据类型示例.8 位设备.R 寄存器.Boolean1")
+                    && opcUaDataEventArgs.OpcUaDataItem.OldValue?.ToString() != "1"
+                    && opcUaDataEventArgs.OpcUaDataItem.NewValue.ObjToBool() == true)
+                {
+                    //值变成了1，开始读取记录数据，处理业务逻辑 
+                    if (sender is OpcUaClientHelper)
+                    {
+                        var opcUaClientHelper = (OpcUaClientHelper)sender;
+                        dbContext.DeviceNodeDb.GetList(a => a.Name == "");
+                        LogHelper.Logger.Info($"已完工，读取数据节点：{opcUaDataEventArgs.OpcUaDataItem.ToString()}");
+
+                        //opcUaClientHelper
+                        //opcUaDataEventArgs.
+                    }
+
+
+
+                }
+
+
+                //switch (opcUaDataEventArgs.OpcUaDataItem.Name)
+                //{
+                //    case "Short1":
+                //        short? value = opcUaDataEventArgs.OpcUaDataItem.NewValue as Int16?;
+                //        if (value.HasValue && value == 1)
+                //        {
+                //            //sender
+                //        }
+
+                //        break;
+
+                //}
             });
 
             return false;
@@ -351,6 +387,9 @@ namespace Service
                  {
                      try
                      {
+                         //LogHelper.Logger.Debug(e.OpcUaDataItem.NewValue.ToString());
+
+
                          bool result = DispatchingHandler.EndInvoke(a);
                      }
                      catch (Exception ex)

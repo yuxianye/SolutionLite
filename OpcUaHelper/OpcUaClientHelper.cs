@@ -392,11 +392,17 @@ namespace OpcUaHelper
                         return OpcUaStatusCodes.Good;
 
                     }
+                    var userNameIdentityToken = new UserNameIdentityToken();
+                    userNameIdentityToken.UserName = "yuxianye";
+                    userNameIdentityToken.Password = Encoding.Default.GetBytes("yuxianye");
+
                     applicationConfiguration = applicationInstance.ApplicationConfiguration;
                     var selectedEndpoint = CoreClientUtils.SelectEndpoint(ServerUri, haveAppCertificate, 15000);
                     var endpointConfiguration = EndpointConfiguration.Create(applicationConfiguration);
                     var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
                     session = Session.Create(applicationConfiguration, endpoint, false, "OpcUaDeviceClient", 60000, new UserIdentity(new AnonymousIdentityToken()), null).Result;
+                    //session = Session.Create(applicationConfiguration, endpoint, false, "OpcUaDeviceClient", 60000, new UserIdentity(userNameIdentityToken), null).Result;
+
                     if (session == null)
                     {
                         OnLogHappened?.Invoke(this, new OpcUaLogEventArgs($"{ToString()}，创建会话失败"));
