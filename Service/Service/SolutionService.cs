@@ -320,7 +320,12 @@ namespace Service
 
         //Dal.DbContext dbContext = new Dal.DbContext();
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="opcUaDataEventArgs"></param>
+        /// <returns></returns>
         private bool dispatchingExecute(object sender, OpcUaDataEventArgs opcUaDataEventArgs)
         {
             //LogHelper.Logger.Info($"日志数量：{opcUaDataEventArgs}");
