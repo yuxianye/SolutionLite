@@ -14,7 +14,7 @@
     <sys:Double x:Key="LeftTreeAutoHideMinWidth">160</sys:Double>
 
     <sysWin:DataGridLength x:Key="DataGridFixedColumnWidth">146</sysWin:DataGridLength>
-    <sysWin:DataGridLength x:Key="DataGridFixedColumnWidth2">50</sysWin:DataGridLength>
+    <sysWin:DataGridLength x:Key="DataGridFixedColumnWidth2">70</sysWin:DataGridLength>
 
     <sys:Double x:Key="SearchTextBoxWidth">220</sys:Double>
     <sys:Double x:Key="SearchTextBoxWidth2">260</sys:Double>

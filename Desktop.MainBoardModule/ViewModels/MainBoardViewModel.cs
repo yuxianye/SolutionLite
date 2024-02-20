@@ -105,6 +105,11 @@ namespace Desktop.MainBoardModule.ViewModels
                                 viewModelBase.Parameter.Add(new KeyValuePair<string, object>(DataModelName, viewInfo.Parameter));
                             }
                         }
+                        else
+                        { 
+                            LogHelper.Logger.Error($"{StaticData.CurrentUser?.Name }/{StaticData.CurrentUser?.NickName},打开{module?.Name}模块时，没有正确加载VM.");
+                        }
+
                         layoutDocument.Content = view;
                         layoutDocumentPane.Children.Add(layoutDocument);
                         layoutDocument.IsActive = true;

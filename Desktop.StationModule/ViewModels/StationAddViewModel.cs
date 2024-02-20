@@ -7,17 +7,17 @@ using System;
 using System.Linq;
 using Utility;
 
-namespace Desktop.OpcModule.ViewModels
+namespace Desktop.StationModule.ViewModels
 {
     /// <summary>
-    /// 新建OPC服务VM
+    /// 新建工位VM
     /// </summary>
-    public class OpcServerAddViewModel : Desktop.Core.ViewModelBase
+    public class StationAddViewModel : Desktop.Core.ViewModelBase
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public OpcServerAddViewModel()
+        public StationAddViewModel()
         {
             CurrentDataModel.PropertyChanged += CurrentDataModel_PropertyChanged;
             initCommand();
@@ -27,7 +27,6 @@ namespace Desktop.OpcModule.ViewModels
         {
             //更新按钮可用状态
             ConfirmCommand.RaiseCanExecuteChanged();
-            ConnectTestCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -35,27 +34,12 @@ namespace Desktop.OpcModule.ViewModels
         /// </summary>
         private Dal.DbContext dbContext = new Dal.DbContext();
 
-        #region OPC服务类型      
-
-        System.Array opcTypes = Enum.GetValues(typeof(OpcType)).Cast<OpcType>().Select(value => new { Key = value, Value = value.ToDescription() }).ToArray();
-
-        /// <summary>
-        /// OPC服务类型 
-        /// </summary>
-        public System.Array OpcTypes
-        {
-            get { return opcTypes; }
-            set { SetProperty(ref opcTypes, value); }
-        }
-
-        #endregion
-
         #region 当前的数据模型
-        private OpcServer currentDataModel = new OpcServer();
+        private Station currentDataModel = new Station();
         /// <summary>
         /// 当前的数据模型
         /// </summary>
-        public OpcServer CurrentDataModel
+        public Station CurrentDataModel
         {
             get { return currentDataModel; }
             set { SetProperty(ref currentDataModel, value); }
@@ -75,19 +59,12 @@ namespace Desktop.OpcModule.ViewModels
         public DelegateCommand CancelCommand { get; set; }
 
         /// <summary>
-        /// 测试连接命令
-        /// </summary>
-        public DelegateCommand ConnectTestCommand { get; set; }
-
-        /// <summary>
         /// 初始化命令,关闭命令始终可用。
         /// </summary>
         private void initCommand()
         {
             ConfirmCommand = new DelegateCommand(executeConfirmCommand, canExecuteConfirmCommand);
             CancelCommand = new DelegateCommand(executeCancelCommand);
-            ConnectTestCommand = new DelegateCommand(executeConnectTestCommand, canExecuteConnectTestCommand);
-
         }
 
         #endregion
@@ -107,10 +84,10 @@ namespace Desktop.OpcModule.ViewModels
                 addAuditedData();
                 controller = await metroWindow?.ShowProgressAsync("系统提示", "正在保存...");
                 controller.SetIndeterminate();
-                if (dbContext.OpcServerDb.Insert(CurrentDataModel))
+                if (dbContext.StationDb.Insert(CurrentDataModel))
                 {
                     UiMessage = "新建成功";
-                    LogHelper.Logger.Info($"{StaticData.CurrentUser.Name}/{StaticData.CurrentUser.NickName},{UiMessage}{System.Environment.NewLine}{Utility.TypeExtensions.GetPropertiesValue<OpcServer>(CurrentDataModel)}");
+                    LogHelper.Logger.Info($"{StaticData.CurrentUser.Name}/{StaticData.CurrentUser.NickName},{UiMessage}{System.Environment.NewLine}{Utility.TypeExtensions.GetPropertiesValue<Station>(CurrentDataModel)}");
                     controller.SetMessage(UiMessage);
                     await controller.CloseAsync();
                     EventAggregator.GetEvent<ClosePopupEvent>().Publish(metroWindow);
@@ -125,7 +102,7 @@ namespace Desktop.OpcModule.ViewModels
             catch (Exception ex)
             {
                 await controller?.CloseAsync();
-                string msg = $"新建OPC服务时错误{ex.Message}";
+                string msg = $"新建工位时错误{ex.Message}";
                 LogHelper.Logger.Error(msg, ex);
                 metroWindow?.ShowMessageAsync("系统错误", msg);
             }
@@ -152,14 +129,14 @@ namespace Desktop.OpcModule.ViewModels
         /// <returns></returns>
         private bool canExecuteConfirmCommand()
         {
-            if (dbContext.OpcServerDb.Count(a => a.Name == CurrentDataModel.Name) > 0)
+            if (dbContext.StationDb.Count(a => a.Code == CurrentDataModel.Code) > 0)
             {
-                UiMessage = $"OPC服务器名{CurrentDataModel.Name}已被使用，请使用其他OPC服务器名";
+                UiMessage = $"工位编号【{CurrentDataModel.Code}】已被使用，请使用其他名称";
                 return false;
             }
-            if (dbContext.OpcServerDb.Count(a => a.Uri == CurrentDataModel.Uri) > 0)
+            if (dbContext.StationDb.Count(a => a.Name == CurrentDataModel.Name) > 0)
             {
-                UiMessage = $"地址{CurrentDataModel.Uri}已被使用，请使用其他地址";
+                UiMessage = $"工位名称【{CurrentDataModel.Name}】已被使用，请使用其他名称";
                 return false;
             }
             if (CurrentDataModel.IsValidated)
@@ -181,86 +158,6 @@ namespace Desktop.OpcModule.ViewModels
         private void executeCancelCommand()
         {
             EventAggregator.GetEvent<ClosePopupEvent>().Publish(Parameter.FirstOrDefault(a => a.Key == ParentName).Value as MetroWindow);
-        }
-
-        /// <summary>
-        /// 执行连接测试命令
-        /// </summary>
-        private async void executeConnectTestCommand()
-        {
-            UiMessage = "开始执行测试连接命令...";
-
-
-            if (this.CurrentDataModel.OpcType == OpcType.OpcUa)
-            {
-                OpcUaHelper.OpcUaClientHelper opcUaClientHelper = new OpcUaHelper.OpcUaClientHelper();
-                try
-                {
-                    opcUaClientHelper.ServerUri = CurrentDataModel.Uri;
-                    var result = await opcUaClientHelper.ConnectAsync();
-
-                    UiMessage = $"服务器连接结果：{result},连接状态：{opcUaClientHelper.IsConnected}";
-                }
-                catch (Exception ex)
-                {
-                    UiMessage = ex.Message;
-                }
-                finally
-                {
-                    await opcUaClientHelper.DisConnectAsync();
-                    opcUaClientHelper?.Dispose();
-                }
-            }
-            else if (this.CurrentDataModel.OpcType == OpcType.OpcClassics)
-            {
-
-                OpcHelper.OpcClientHelper opcClientHelper = new OpcHelper.OpcClientHelper();
-                try
-                {
-                    var result = opcClientHelper.Connect(CurrentDataModel.Name, CurrentDataModel.Uri);
-
-                    UiMessage = $"服务器连接结果：{result},连接状态：{opcClientHelper.IsConnected}";
-                }
-                catch (Exception ex)
-                {
-                    UiMessage = ex.Message;
-                }
-                finally
-                {
-                    opcClientHelper.DisConnectAsync();
-                    opcClientHelper?.Dispose();
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// 是否可以执行执行连接测试命令
-        /// </summary>
-        /// <returns></returns>
-        private bool canExecuteConnectTestCommand()
-        {
-            if (dbContext.OpcServerDb.Count(a => a.Name == CurrentDataModel.Name) > 0)
-            {
-                UiMessage = $"OPC服务器名{CurrentDataModel.Name}已被使用，请使用其他OPC服务器名";
-                return false;
-            }
-            if (dbContext.OpcServerDb.Count(a => a.Uri == CurrentDataModel.Uri) > 0)
-            {
-                UiMessage = $"地址{CurrentDataModel.Uri}已被使用，请使用其他地址";
-                return false;
-            }
-            if (CurrentDataModel.IsValidated)
-            {
-
-                UiMessage = string.Empty;
-                return true;
-            }
-            else
-            {
-                UiMessage = string.Empty;
-                return false;
-            }
         }
 
         #endregion

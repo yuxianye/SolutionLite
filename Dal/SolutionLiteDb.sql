@@ -30,6 +30,10 @@ GO
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Notice]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
 drop table [dbo].[Notice]
 GO
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Station]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
+drop table [dbo].[Notice]
+GO
+
 --创建表
 CREATE TABLE [dbo].[Role] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
@@ -555,3 +559,49 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'异常', @lev
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'堆栈', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'StackTrace';
 
+GO
+CREATE TABLE [dbo].[Station] (
+    [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+    [Code]            NVARCHAR (50)    NULL,
+    [Name]            NVARCHAR (50)    NULL,
+    [CreatedTime]     DATETIME2 (7)    DEFAULT (getdate()) NULL,
+    [CreatorUser]     NVARCHAR (16)    NULL,
+    [LastUpdatedTime] DATETIME2 (7)    DEFAULT (getdate()) NULL,
+    [LastUpdatorUser] NVARCHAR (16)    NULL,
+    [Remark]          NVARCHAR (50)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [AK_Station_Code] UNIQUE NONCLUSTERED ([Code] ASC)
+);
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID主键', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Id';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'工序编码（唯一）', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Code';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'工序名称', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Name';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'创建时间', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'创建人', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'最后更新时间', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'最后修改人', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'备注', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Remark';
+
+GO

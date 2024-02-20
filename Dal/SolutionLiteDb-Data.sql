@@ -86,8 +86,25 @@ INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCod
 
 --基础数据管理															 
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02000000-0000-0000-0000-000000000000',N'基础数据管理',1,N'00000000-0000-0000-0000-000000000000',2,'pack://application:,,,/Desktop.Resource;component/Images/BaseData_32.png',NULL,NULL,getdate(),'admin',getdate(),'admin',null)
+--设备管理
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010000-0000-0000-0000-000000000000',N'设备管理',1,N'02000000-0000-0000-0000-000000000000',2.1,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentView',getdate(),'admin',getdate(),'admin',null)
-INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020000-0000-0000-0000-000000000000',N'工序管理',1,N'02000000-0000-0000-0000-000000000000',2.2,'pack://application:,,,/Desktop.Resource;component/Images/Logo_16.ico','Desktop.WorkCellModule','Desktop.WorkCellModule.Views.WorkCellView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010100-0000-0000-0000-000000000000',N'新建设备',0,N'02010000-0000-0000-0000-000000000000',2.11,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentAddView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010200-0000-0000-0000-000000000000',N'编辑设备',0,N'02010000-0000-0000-0000-000000000000',2.12,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentEditView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010300-0000-0000-0000-000000000000',N'删除设备',0,N'02010000-0000-0000-0000-000000000000',2.13,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentDeleteView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010400-0000-0000-0000-000000000000',N'导入设备',0,N'02010000-0000-0000-0000-000000000000',2.14,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentImportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010500-0000-0000-0000-000000000000',N'导出设备',0,N'02010000-0000-0000-0000-000000000000',2.15,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentExportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02010600-0000-0000-0000-000000000000',N'打印设备',0,N'02010000-0000-0000-0000-000000000000',2.16,NULL,'Desktop.EquipmentModule','Desktop.EquipmentModule.Views.EquipmentPrintView',getdate(),'admin',getdate(),'admin',null)
+
+--工序/工站管理
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020000-0000-0000-0000-000000000000',N'工序管理',1,N'02000000-0000-0000-0000-000000000000',2.2,'pack://application:,,,/Desktop.Resource;component/Images/Logo_16.ico','Desktop.StationModule','Desktop.StationModule.Views.StationView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020100-0000-0000-0000-000000000000',N'新建工序',0,N'02020000-0000-0000-0000-000000000000',2.21,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationAddView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020200-0000-0000-0000-000000000000',N'编辑工序',0,N'02020000-0000-0000-0000-000000000000',2.22,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationEditView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020300-0000-0000-0000-000000000000',N'删除工序',0,N'02020000-0000-0000-0000-000000000000',2.23,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationDeleteView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020400-0000-0000-0000-000000000000',N'导入工序',0,N'02020000-0000-0000-0000-000000000000',2.24,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationImportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020500-0000-0000-0000-000000000000',N'导出工序',0,N'02020000-0000-0000-0000-000000000000',2.25,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationExportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02020600-0000-0000-0000-000000000000',N'打印工序',0,N'02020000-0000-0000-0000-000000000000',2.26,NULL,'Desktop.StationModule','Desktop.StationModule.Views.StationPrintView',getdate(),'admin',getdate(),'admin',null)
+
+
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('02030000-0000-0000-0000-000000000000',N'产品型号管理',1,N'02000000-0000-0000-0000-000000000000',2.3,'pack://application:,,,/Desktop.Resource;component/Images/ProductModel.png','Desktop.ProductModelModule','Desktop.ProductModelModule.Views.ProductModelView',getdate(),'admin',getdate(),'admin',null)
 
 --看板管理															 
@@ -175,3 +192,28 @@ INSERT INTO [dbo].[DeviceNode]([Id],[OpcServerId],[Name],[DataType],[UpdateRate]
 
 GO 
 
+--Equipment测试数据 
+delete from [dbo].[Equipment]
+DECLARE @ct  int
+set @ct=1
+WHILE @ct < 10
+BEGIN
+
+INSERT INTO [dbo].[Equipment]([Id],[Code],[Name],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),N'Equipment_'+CAST(@ct as nvarchar),N'设备_'+CAST(@ct as nvarchar),getdate(),'admin',getdate(),'admin',null)
+SET @ct=@ct+1
+END 
+
+GO
+
+--Station测试数据 
+delete from [dbo].[Station]
+DECLARE @ct  int
+set @ct=1
+WHILE @ct < 10
+BEGIN
+
+INSERT INTO [dbo].[Station]([Id],[Code],[Name],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),N'Station_'+CAST(@ct as nvarchar),N'工序_'+CAST(@ct as nvarchar),getdate(),'admin',getdate(),'admin',null)
+SET @ct=@ct+1
+END 
+
+GO

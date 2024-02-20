@@ -23,6 +23,8 @@
         <ResourceDictionary Source="String_Role.xaml" />
         <ResourceDictionary Source="String_Setting.xaml" />
         <ResourceDictionary Source="String_User.xaml" />
+        <ResourceDictionary Source="String_Equipment.xaml" />
+        <ResourceDictionary Source="String_Station.xaml" />
 
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

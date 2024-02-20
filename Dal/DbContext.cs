@@ -43,6 +43,11 @@ namespace Dal
 
 
         /// <summary>
+        /// 工序/工站
+        /// </summary>
+        public DbSet<Station> StationDb { get { return new DbSet<Station>(Db); } }
+
+        /// <summary>
         /// 应用日志
         /// </summary>
         public DbSet<AppLog> AppLogDb { get { return new DbSet<AppLog>(Db); } }

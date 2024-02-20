@@ -7,7 +7,7 @@ namespace Models
     ///<summary>
     ///
     ///</summary>
-    public partial class RoleModule
+    public partial class RoleModule : ModelBase
     {
         public RoleModule()
         {

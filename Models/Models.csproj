@@ -52,8 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbModel\AppLog.cs" />
+    <Compile Include="Station.cs" />
     <Compile Include="DeviceNode.cs" />
-    <Compile Include="DbModel\Equipment.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="DbModel\RoleModule.cs" />
     <Compile Include="DbModel\UserRole.cs" />
     <Compile Include="ModifyPasswordModel.cs" />
