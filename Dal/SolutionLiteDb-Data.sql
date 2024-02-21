@@ -1,4 +1,4 @@
-USE [D:\SVN\Base\branches\单机版框架\03_项目开发\06_源代码\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
+-- USE [D:\SVN\Base\branches\单机版框架\03_项目开发\06_源代码\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
 --alter database [D:\SVN\BASE\BRANCHES\单机版框架\03_项目开发\06_源代码\SOLUTIONLITE\DAL\SOLUTIONLITEDB.MDF]  set multi_user; 
 --USE SOLUTIONLITEDB
 GO

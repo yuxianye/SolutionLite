@@ -1,4 +1,4 @@
-USE [D:\SVN\Base\branches\µ¥»ú°æ¿ò¼Ü\03_ÏîÄ¿¿ª·¢\06_Ô´´úÂë\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
+-- USE [D:\SVN\Base\branches\µ¥»ú°æ¿ò¼Ü\03_ÏîÄ¿¿ª·¢\06_Ô´´úÂë\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
 -- ÅÐ¶ÏÒª´´½¨µÄ±íÃûÊÇ·ñ´æÔÚ 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[RoleModule]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
 drop table [dbo].[RoleModule] 
@@ -31,7 +31,7 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Notice]') 
 drop table [dbo].[Notice]
 GO
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Station]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
-drop table [dbo].[Notice]
+drop table [dbo].[Station]
 GO
 
 --´´½¨±í
@@ -421,15 +421,16 @@ GO
 
 CREATE TABLE [dbo].[Equipment] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
-    [Code]            NVARCHAR (50)    NULL,
-    [Name]            NVARCHAR (50)    NULL,
+    [Code]            NVARCHAR (50)    NOT NULL,
+    [Name]            NVARCHAR (50)    NOT NULL,
     [CreatedTime]     DATETIME2 (7)    DEFAULT (getdate()) NULL,
     [CreatorUser]     NVARCHAR (16)    NULL,
     [LastUpdatedTime] DATETIME2 (7)    DEFAULT (getdate()) NULL,
     [LastUpdatorUser] NVARCHAR (16)    NULL,
     [Remark]          NVARCHAR (50)    NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [AK_Equipment_Code] UNIQUE NONCLUSTERED ([Code] ASC)
+    CONSTRAINT [AK_Equipment_Code] UNIQUE NONCLUSTERED ([Code] ASC),
+    CONSTRAINT [AK_Equipment_Name] UNIQUE NONCLUSTERED ([Name] ASC)
 );
 
 GO
@@ -441,7 +442,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Éè±¸±àÂë£¨Î
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Éè±¸Ãû³Æ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Éè±¸Ãû³Æ£¨Î¨Ò»£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
@@ -562,15 +563,16 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¶ÑÕ»', @lev
 GO
 CREATE TABLE [dbo].[Station] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
-    [Code]            NVARCHAR (50)    NULL,
-    [Name]            NVARCHAR (50)    NULL,
+    [Code]            NVARCHAR (50)    NOT NULL,
+    [Name]            NVARCHAR (50)    NOT NULL,
     [CreatedTime]     DATETIME2 (7)    DEFAULT (getdate()) NULL,
     [CreatorUser]     NVARCHAR (16)    NULL,
     [LastUpdatedTime] DATETIME2 (7)    DEFAULT (getdate()) NULL,
     [LastUpdatorUser] NVARCHAR (16)    NULL,
     [Remark]          NVARCHAR (50)    NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [AK_Station_Code] UNIQUE NONCLUSTERED ([Code] ASC)
+    CONSTRAINT [AK_Station_Code] UNIQUE NONCLUSTERED ([Code] ASC),
+    CONSTRAINT [AK_Station_Name] UNIQUE NONCLUSTERED ([Name] ASC)
 );
 
 GO
@@ -582,7 +584,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¹¤Ðò±àÂë£¨Î
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¹¤ÐòÃû³Æ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¹¤ÐòÃû³Æ£¨Î¨Ò»£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
