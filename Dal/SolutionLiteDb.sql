@@ -1,5 +1,5 @@
--- USE [D:\SVN\Base\branches\µ•ª˙∞ÊøÚº‹\03_œÓƒøø™∑¢\06_‘¥¥˙¬Î\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
--- ≈–∂œ“™¥¥Ω®µƒ±Ì√˚ «∑Ò¥Ê‘⁄ 
+Ôªø-- USE [D:\SVN\Base\branches\ÂçïÊú∫ÁâàÊ°ÜÊû∂\03_È°πÁõÆÂºÄÂèë\06_Ê∫ê‰ª£Á†Å\SolutionLite\DAL\SOLUTIONLITEDB.MDF]
+-- Âà§Êñ≠Ë¶ÅÂàõÂª∫ÁöÑË°®ÂêçÊòØÂê¶Â≠òÂú® 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[RoleModule]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
 drop table [dbo].[RoleModule] 
 GO
@@ -34,7 +34,7 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Station]')
 drop table [dbo].[Station]
 GO
 
---¥¥Ω®±Ì
+--ÂàõÂª∫Ë°®
 CREATE TABLE [dbo].[Role] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
     [Name]            NVARCHAR (16)    NOT NULL,
@@ -48,31 +48,31 @@ CREATE TABLE [dbo].[Role] (
 );
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ω«…´√˚≥∆£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËßíËâ≤ÂêçÁß∞ÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Role', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 
@@ -92,39 +92,39 @@ CREATE TABLE [dbo].[User] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'”√ªß√˚', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Áî®Êà∑Âêç', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Í«≥∆°¢÷–Œƒ√˚', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'NickName';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòµÁß∞„ÄÅ‰∏≠ÊñáÂêç', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'NickName';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'∞≤»´√‹¬Î', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'SecurityPassword';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂÆâÂÖ®ÂØÜÁ†Å', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'SecurityPassword';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'User', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 
@@ -145,35 +145,35 @@ CREATE TABLE [dbo].[UserRole] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'”√ªßGUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'UserId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Áî®Êà∑GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'UserId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ω«…´GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'RoleId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËßíËâ≤GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'RoleId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'UserRole', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 CREATE TABLE [dbo].[Module] (
@@ -196,55 +196,55 @@ CREATE TABLE [dbo].[Module] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ƒ£øÈ√˚≥∆£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ê®°ÂùóÂêçÁß∞ÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'∏∏Ω⁄µ„±‡∫≈,ƒ¨»œ 00000000-0000-0000-0000-000000000000', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ParentId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Áà∂ËäÇÁÇπÁºñÂè∑,ÈªòËÆ§ 00000000-0000-0000-0000-000000000000', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ParentId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'≈≈–Ú¬Î', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'OrderCode';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊéíÂ∫èÁ†Å', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'OrderCode';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' «∑Ò‘⁄µº∫Ω≤Àµ•œ‘ æ£¨ƒ¨»œœ‘ æ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ShowInNavigateMenu';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòØÂê¶Âú®ÂØºËà™ËèúÂçïÊòæÁ§∫ÔºåÈªòËÆ§ÊòæÁ§∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ShowInNavigateMenu';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Õº±Í', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Icon';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂõæÊ†á', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Icon';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'≥Ã–ÚºØ√˚£¨¿˝»Á£∫Desktop.UserModule', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'AssemblyName';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Á®ãÂ∫èÈõÜÂêçÔºå‰æãÂ¶ÇÔºöDesktop.UserModule', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'AssemblyName';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'“≥√Ê√˚£¨¿˝»Á£∫Desktop.UserModule.Views.UserView', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ViewName';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'È°µÈù¢ÂêçÔºå‰æãÂ¶ÇÔºöDesktop.UserModule.Views.UserView', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'ViewName';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Module', @level2type = N'COLUMN', @level2name = N'Remark';
 
 
 GO
@@ -266,39 +266,39 @@ CREATE TABLE [dbo].[RoleModule] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ω«…´GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'RoleId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËßíËâ≤GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'RoleId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ƒ£øÈGUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'ModuleId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ê®°ÂùóGUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'ModuleId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' «∑Ò∆Ù”√', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'IsEnable';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòØÂê¶ÂêØÁî®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'IsEnable';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'RoleModule', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 CREATE TABLE [dbo].[OpcServer] (
@@ -318,41 +318,41 @@ CREATE TABLE [dbo].[OpcServer] (
 );
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'√˚≥∆£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂêçÁß∞ÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Uriµÿ÷∑£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Uri';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'UriÂú∞ÂùÄÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Uri';
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¿‡–Õ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'OpcType';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Á±ªÂûã', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'OpcType';
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' «∑Ò∆Ù”√', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'IsEnable';
-
-
-GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòØÂê¶ÂêØÁî®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'IsEnable';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'OpcServer', @level2type = N'COLUMN', @level2name = N'Remark';
 
 
 GO
@@ -375,47 +375,47 @@ CREATE TABLE [dbo].[DeviceNode] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'OPC∑˛ŒÒ∆˜GUID÷˜º¸£®”ÎName◊È∫œŒ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'OpcServerId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'OPCÊúçÂä°Âô®GUID‰∏ªÈîÆÔºà‰∏éNameÁªÑÂêàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'OpcServerId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Ω⁄µ„√˚≥∆£®”ÎOPC ServerId◊È∫œŒ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËäÇÁÇπÂêçÁß∞Ôºà‰∏éOPC ServerIdÁªÑÂêàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' ˝æ›¿‡–Õ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'DataType';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Êï∞ÊçÆÁ±ªÂûã', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'DataType';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'∏¸–¬∆µ¬ ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'UpdateRate';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Êõ¥Êñ∞È¢ëÁéá', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'UpdateRate';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' «∑Ò∆Ù”√', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'IsEnable';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòØÂê¶ÂêØÁî®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'IsEnable';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'DeviceNode', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 
@@ -434,35 +434,35 @@ CREATE TABLE [dbo].[Equipment] (
 );
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'…Ë±∏±‡¬Î£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Code';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËÆæÂ§áÁºñÁ†ÅÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Code';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'…Ë±∏√˚≥∆£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ËÆæÂ§áÂêçÁß∞ÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û–ﬁ∏ƒ»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêé‰øÆÊîπ‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Equipment', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 
@@ -482,39 +482,39 @@ CREATE TABLE [dbo].[Notice] (
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ƒ⁄»›', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Content';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂÜÖÂÆπ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Content';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'≈≈–Ú¬Î£¨ƒ¨»œ1', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'OrderCode';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊéíÂ∫èÁ†ÅÔºåÈªòËÆ§1', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'OrderCode';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' «∑Ò∆Ù”√£¨ƒ¨»œ∆Ù”√1', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'IsEnable';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊòØÂê¶ÂêØÁî®ÔºåÈªòËÆ§ÂêØÁî®1', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'IsEnable';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Notice', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
 
@@ -530,35 +530,35 @@ CREATE TABLE [dbo].[AppLog] (
 );
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±‡∫≈', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÁºñÂè∑', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N' ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'µ»º∂', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Level';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Á≠âÁ∫ß', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Level';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'œﬂ≥Ã∫≈', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'ThreadId';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Á∫øÁ®ãÂè∑', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'ThreadId';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'–≈œ¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Message';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'‰ø°ÊÅØ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Message';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¿¥‘¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'CallSite';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Êù•Ê∫ê', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'CallSite';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'“Ï≥£', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Exception';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂºÇÂ∏∏', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'Exception';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'∂—’ª', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'StackTrace';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â†ÜÊ†à', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AppLog', @level2type = N'COLUMN', @level2name = N'StackTrace';
 
 GO
 CREATE TABLE [dbo].[Station] (
@@ -576,34 +576,34 @@ CREATE TABLE [dbo].[Station] (
 );
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID÷˜º¸', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Id';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID‰∏ªÈîÆ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Id';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'π§–Ú±‡¬Î£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Code';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â∑•Â∫èÁºñÁ†ÅÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Code';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'π§–Ú√˚≥∆£®Œ®“ª£©', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Name';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â∑•Â∫èÂêçÁß∞ÔºàÂîØ‰∏ÄÔºâ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Name';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω® ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'¥¥Ω®»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÂàõÂª∫‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'CreatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û∏¸–¬ ±º‰', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêéÊõ¥Êñ∞Êó∂Èó¥', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'◊Ó∫Û–ﬁ∏ƒ»À', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'ÊúÄÂêé‰øÆÊîπ‰∫∫', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'±∏◊¢', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Remark';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Â§áÊ≥®', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
