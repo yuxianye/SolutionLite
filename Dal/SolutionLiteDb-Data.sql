@@ -113,6 +113,15 @@ INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCod
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('03020000-0000-0000-0000-000000000000',N'3D看板2',1,N'03000000-0000-0000-0000-000000000000',3.2,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.ThreeDModule','Desktop.ThreeDModule.Views.ThreeD2View',getdate(),'admin',getdate(),'admin',null)
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('03030000-0000-0000-0000-000000000000',N'3DX看板2',1,N'03000000-0000-0000-0000-000000000000',3.2,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.ThreeDModule','Desktop.ThreeDModule.Views.ThreeDx2View',getdate(),'admin',getdate(),'admin',null)
 
+
+--视觉检测															 
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04000000-0000-0000-0000-000000000000',N'视觉检测',1,N'00000000-0000-0000-0000-000000000000',4,'pack://application:,,,/Desktop.Resource;component/Images/BaseData_32.png',NULL,NULL,getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04010000-0000-0000-0000-000000000000',N'入库检测',1,N'04000000-0000-0000-0000-000000000000',4.1,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.VisionModule','Desktop.VisionModule.Views.StoreView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04020000-0000-0000-0000-000000000000',N'出库检测',1,N'04000000-0000-0000-0000-000000000000',4.2,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.VisionModule','Desktop.VisionModule.Views.RetrievalView',getdate(),'admin',getdate(),'admin',null)
+
+
+
+
 --角色模块
 INSERT INTO [dbo].[RoleModule]([Id],[RoleId],[ModuleId],[IsEnable],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])
  select newid() as id ,'01000000-0000-0000-0000-000000000000' as RoleId, id as ModuleId,1 as IsEnable ,getdate() as CreatedTime,'admin'as CreatorUser,getdate()as LastUpdatedTime,'admin'as LastUpdatorUser,null as Remark from  module 
