@@ -1,0 +1,130 @@
+﻿<ucBase:UserControlBase x:Class="Desktop.VisionModule.Views.RetrievalView"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                        xmlns:prism="http://prismlibrary.com/"
+                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:ucBase="clr-namespace:Desktop.Core;assembly=Desktop.Core"
+                        xmlns:pc="clr-namespace:Desktop.PublicControl;assembly=Desktop.PublicControl"
+                        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                        xmlns:hx="http://helix-toolkit.org/wpf"
+                        prism:ViewModelLocator.AutoWireViewModel="True"
+                        mc:Ignorable="d"
+                        d:DesignHeight="450"
+                        d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ViewButtonAreaHeight}" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--按钮-->
+        <StackPanel VerticalAlignment="Center"
+                    Orientation="Horizontal">
+            <pc:ImageButton Icon="{iconPacks:Material Kind=FolderOpen}"
+                            Content="{StaticResource Open}"
+                            ToolTip="{StaticResource Open}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding OpenFileCommand}" />
+            <!--<pc:ImageButton Icon="{iconPacks:Material Kind=Pencil}"
+                            Content="{StaticResource Edit}"
+                            ToolTip="{StaticResource Edit}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding EditCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Delete}"
+                            Content="{StaticResource Delete}"
+                            ToolTip="{StaticResource Delete}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding DeleteCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Refresh}"
+                            Content="{StaticResource Refresh}"
+                            ToolTip="{StaticResource Refresh}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding RefreshCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Import}"
+                            Content="{StaticResource Import}"
+                            ToolTip="{StaticResource Import}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ImportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Export}"
+                            Content="{StaticResource Export}"
+                            ToolTip="{StaticResource Export}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding ExportCommand}" />
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Printer}"
+                            Content="{StaticResource Print}"
+                            ToolTip="{StaticResource Print}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding PrintCommand}" />
+            <TextBox x:Name="txtSearch"
+                     Grid.Column="1"
+                     Style="{StaticResource SearchMetroTextBox}"
+                     Margin="{StaticResource ControlMargin6}"
+                     Metro:TextBoxHelper.ButtonCommand="{Binding SearchCommand, Mode=OneWay}"
+                     Metro:TextBoxHelper.ButtonCommandParameter="{Binding ElementName=txtSearch, Path=Text}"
+                     Metro:TextBoxHelper.SelectAllOnFocus="True"
+                     Metro:TextBoxHelper.Watermark="{StaticResource UserSearchTextBoxWatermark}"
+                     Width="{StaticResource SearchTextBoxWidth}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand, Mode=OneWay}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TextBox}, Path=Text, Mode=OneWay}" />
+                </TextBox.InputBindings>
+            </TextBox>-->
+        </StackPanel>
+      
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ContentControl 
+                            Content="{Binding MainContent}">
+
+            </ContentControl>
+
+
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Style="{DynamicResource CircleButtonStyle}"
+                    ToolTip="{DynamicResource DefaultViewPosition}"
+                    Command="{Binding DefaultViewPositionCommand }">
+                <iconPacks:PackIconMaterial Width="{DynamicResource CircleButtonIconWidth}"
+                                            Height="{DynamicResource CircleButtonIconHeight}"
+                                            Kind="ArrowAll" />
+            </Button>
+           
+        </Grid>
+        <!--分页控件-->
+        <!--<StackPanel  Grid.Row="2"
+                     Orientation="Horizontal">
+            <pc:DataPager x:Name="dataPager"
+                          TotalCount="{Binding TotalCounts}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding Path=PageChangedCommand}"
+                                               CommandParameter="{Binding Path=PageChangedEventArgs, ElementName=dataPager}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </pc:DataPager>
+        --><!--页面提示消息--><!--
+            <TextBlock Style="{StaticResource UiMessageTextBlockStyle}"
+                       Text="{Binding UiMessage}"></TextBlock>
+        </StackPanel>-->
+    </Grid>
+</ucBase:UserControlBase>
