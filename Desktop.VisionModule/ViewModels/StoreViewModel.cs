@@ -26,6 +26,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Utility.Windows;
 using SharpDX.Direct3D9;
+using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace Desktop.VisionModule.ViewModels
 {
@@ -199,6 +201,21 @@ namespace Desktop.VisionModule.ViewModels
             get { return captureImage; }
             set { SetProperty(ref captureImage, value); }
         }
+
+
+
+        private VisionResult visionResult;
+
+        /// <summary>
+        /// 结果
+        /// </summary>
+        public VisionResult VisionResult
+        {
+            get { return visionResult; }
+            set { SetProperty(ref visionResult, value); }
+        }
+
+
         #endregion
 
 
@@ -215,7 +232,8 @@ namespace Desktop.VisionModule.ViewModels
 
         private void OnExecuteStartCommand()
         {
-
+            capture.Set(VideoCaptureProperties.FrameWidth, 1920);
+            capture.Set(VideoCaptureProperties.FrameHeight, 1080);
 
 
             if (!capture.IsOpened())
@@ -266,13 +284,45 @@ namespace Desktop.VisionModule.ViewModels
             try
             {
 
-
-                frame.ImWrite(Utility.ConstValue.AppPath + @"Images\" + DateTime.Now.ToString("yyyy-MM-dd HHmmss fffffff") + ".png");
+                string imagePath = Utility.ConstValue.AppPath + @"Images\" + DateTime.Now.ToString("yyyy-MM-dd HHmmss fffffff") + ".png";
+                frame.ImWrite(imagePath);
 
                 CaptureImage = BitmapCamera = frame.ToBitmapSource();
+                string postdata = $"{{\"imagePath\":\"{imagePath}\"}}";
+
+                HttpClient httpClient = new HttpClient();
+                var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision?imagePath={imagePath}", new StringContent(postdata));
+                //var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision", new StringContent(postdata));
+                string a = r.Result.Content.ReadAsStringAsync().Result.ToString();
+                this.VisionResult = Utility.JsonHelper.FromJson<VisionResult>(a);
+                LogHelper.Logger.Info(a);
+
+                // string rr = r.GetAwaiter().GetResult().Content.ToString();
+                //var r = Utility.HttpClientHelper.PostJsonAsync($"https://localhost:7091/VehicleVision", postdata, null, new Dictionary<string, string>());
+
+                //VisionResult result = Utility.JsonHelper.FromJson<VisionResult>(r.Result.ToString());
 
 
 
+                //Task<VisionResult> result = Utility.HttpClientHelper.AsyncPostResponse<VisionResult>($"https://localhost:57911/predict", postdata);
+
+
+
+                //if (result.Result != null)
+                //{
+
+                //    LogHelper.Logger.Info(result.Result.predictedLabel);
+                //    LogHelper.Logger.Info(result.Result.score.ToString());
+                //    LogHelper.Logger.Info(result.Result.label.ToString());
+                //    LogHelper.Logger.Info(result.Result.imageSource.ToString());
+                //    LogHelper.Logger.Info(result.Result.predictedLabel.ToString());
+                //    LogHelper.Logger.Info(result.Result.score.ToString());
+
+                //}
+                //else
+                //{
+                //    MessageBox.Show("没有返回结果");
+                //}
 
                 //// Create single instance of sample data from first line of dataset for model input
                 //var imageBytes = File.ReadAllBytes(@"C:\Users\Admin\Desktop\paint.png");
@@ -414,6 +464,8 @@ namespace Desktop.VisionModule.ViewModels
         {
             //释放相关的资源
             capture.Release();
+            capture.Dispose();
+
             Cv2.DestroyAllWindows();
             LogHelper.Logger.Debug($"释放资源：{this.ToString()}");
         }

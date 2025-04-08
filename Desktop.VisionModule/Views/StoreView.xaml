@@ -91,7 +91,7 @@
         </StackPanel>
         <!--数据表格-->
 
-        <Grid Grid.Row="1" ShowGridLines="False">
+        <Grid Grid.Row="1" ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="640*"></ColumnDefinition>
                 <ColumnDefinition  Width="5"></ColumnDefinition>
@@ -100,11 +100,11 @@
                 <ColumnDefinition Width="640*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="480"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--中间横向分割-->
@@ -136,6 +136,18 @@
             <Image Grid.Column="0" Grid.Row="0" Stretch="Uniform " Source="{Binding BitmapCamera}"></Image>
             <Image Grid.Column="2" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>
             <Image Grid.Column="4" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>
+
+            <StackPanel Grid.Column="2" Grid.Row="2" >
+                <TextBlock Text="预测结果:" ></TextBlock>
+                <TextBlock  Text="{Binding VisionResult.PredictedLabel}" ></TextBlock>
+                <!--<TextBlock Text="{Binding VisionResult.Label}" ></TextBlock>-->
+
+                <TextBlock Text="相似度:" ></TextBlock>
+                <ListBox ItemsSource="{Binding VisionResult.Score,StringFormat={}{0:P2}}">
+                </ListBox>
+
+
+            </StackPanel>
 
 
         </Grid>

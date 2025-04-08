@@ -311,6 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisionResult.cs" />
     <Compile Include="ViewModels\ModifyPasswordViewModel.cs" />
     <Compile Include="ViewModels\RetrievalViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />

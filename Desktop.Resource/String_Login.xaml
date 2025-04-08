@@ -12,10 +12,10 @@
     <sys:String x:Key="Login">登 录</sys:String>
     <sys:String x:Key="Register">注册</sys:String>
     <sys:String x:Key="Exit">退 出</sys:String>
-    <sys:String x:Key="LoginTitle1">于显野WPF模块化系统</sys:String>
+    <sys:String x:Key="LoginTitle1">Audi Vision System</sys:String>
     <sys:String x:Key="LoginTitle2">用户登陆</sys:String>
     <!--<sys:String x:Key="IMES">Supervisory Control And Data Acquisition</sys:String>-->
-    <sys:String x:Key="IMES">桌面通用型系统</sys:String>
+    <sys:String x:Key="IMES">视觉检测系统</sys:String>
     <sys:String x:Key="Copyright">Copyright©2025 yuxianye Tech.Co.Ltd All Rights Reserved</sys:String>
     <sys:String x:Key="Version">版本 V</sys:String>
 

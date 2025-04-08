@@ -1,0 +1,6 @@
+@Desktop.VisionModele.MLWebApp_HostAddress = http://localhost:5254
+
+GET {{Desktop.VisionModele.MLWebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
