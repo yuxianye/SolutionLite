@@ -4,5 +4,9 @@
     <sys:String x:Key="Start">开始</sys:String>
     <sys:String x:Key="Setting">设置</sys:String>
     <sys:String x:Key="CaptureImage">捕获图片</sys:String>
-    
+    <sys:String x:Key="PredictRecoredName">Name</sys:String>
+    <sys:String x:Key="PredictRecoredImageUri">Image Uri</sys:String>
+    <sys:String x:Key="PredictRecoredVehicleType">Vehicle Type</sys:String>
+    <sys:String x:Key="PredictRecoredExteriorColor">Exterior Color</sys:String>
+    <sys:String x:Key="PredictRecoredSearchTextBoxWatermark">VehicleType/ExteriorColor/创建人/修改人</sys:String>
 </ResourceDictionary>

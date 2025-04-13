@@ -38,7 +38,7 @@ namespace Desktop.VisionModele.MLWebApp.Controllers
 
 
         [HttpPost(Name = "predict")]
-        public async Task<VehicleMLModel.ModelOutput> predict(string imagePath)
+        public async Task<IOrderedEnumerable<KeyValuePair<string, float>>> predict(string imagePath)
         {
             //imagePath = @"C:\AudiCar\Body\IMG_20250328_140232.jpg";
             System.Diagnostics.Debug.Print($"{imagePath}");
@@ -50,7 +50,9 @@ namespace Desktop.VisionModele.MLWebApp.Controllers
                 ImageSource = System.IO.File.ReadAllBytes(imagePath),
             };
             System.Diagnostics.Debug.Print("·µ»Ø½á¹û");
-            return await Task.FromResult(predictionEnginePool.Predict(input));
+
+           
+            return await Task.FromResult(VehicleMLModel.GetSortedScoresWithLabels(predictionEnginePool.Predict(input)));
 
 
         }

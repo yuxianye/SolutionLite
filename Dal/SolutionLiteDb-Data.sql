@@ -119,7 +119,14 @@ INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCod
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04010000-0000-0000-0000-000000000000',N'入库检测',1,N'04000000-0000-0000-0000-000000000000',4.1,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.VisionModule','Desktop.VisionModule.Views.StoreView',getdate(),'admin',getdate(),'admin',null)
 INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04020000-0000-0000-0000-000000000000',N'出库检测',1,N'04000000-0000-0000-0000-000000000000',4.2,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.VisionModule','Desktop.VisionModule.Views.RetrievalView',getdate(),'admin',getdate(),'admin',null)
 
-
+--检测记录
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030000-0000-0000-0000-000000000000',N'检测记录',1,N'04000000-0000-0000-0000-000000000000',4.3,'pack://application:,,,/Desktop.Resource;component/Images/Equipment_32.png','Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030100-0000-0000-0000-000000000000',N'新建记录',0,N'04030000-0000-0000-0000-000000000000',4.31,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredAddView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030200-0000-0000-0000-000000000000',N'编辑记录',0,N'04030000-0000-0000-0000-000000000000',4.32,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredEditView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030300-0000-0000-0000-000000000000',N'删除记录',0,N'04030000-0000-0000-0000-000000000000',4.33,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredDeleteView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030400-0000-0000-0000-000000000000',N'导入记录',0,N'04030000-0000-0000-0000-000000000000',4.34,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredImportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030500-0000-0000-0000-000000000000',N'导出记录',0,N'04030000-0000-0000-0000-000000000000',4.35,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredExportView',getdate(),'admin',getdate(),'admin',null)
+INSERT INTO [dbo].[Module]([Id],[Name],[ShowInNavigateMenu],[ParentId],[OrderCode],[Icon],[AssemblyName],[ViewName],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES('04030600-0000-0000-0000-000000000000',N'打印记录',0,N'04030000-0000-0000-0000-000000000000',4.36,NULL,'Desktop.VisionModule','Desktop.VisionModule.Views.PredictRecoredPrintView',getdate(),'admin',getdate(),'admin',null)
 
 
 --角色模块
@@ -215,7 +222,10 @@ END
 GO
 
 --Station测试数据 
+delete from [dbo].[PredictRecored]
+GO
 delete from [dbo].[Station]
+GO
 DECLARE @ct  int
 set @ct=1
 WHILE @ct < 10
@@ -226,3 +236,15 @@ SET @ct=@ct+1
 END 
 
 GO
+
+
+--PredictRecored测试数据 
+delete from [dbo].[PredictRecored]
+DECLARE @ct  int
+set @ct=1
+WHILE @ct < 10
+BEGIN
+
+INSERT INTO [dbo].[PredictRecored]([Id],[StationId],[Name],[Imageuri],[VehicleType],[ExteriorColor],[CreatedTime],[CreatorUser],[LastUpdatedTime],[LastUpdatorUser],[Remark])VALUES(NEWID(),(select top 1 id from Station), N'PredictRecored_'+CAST(@ct as nvarchar),N'PredictRecored/'+CAST(@ct as nvarchar)+N'.npg',2,2,getdate(),'admin',getdate(),'admin',null)
+SET @ct=@ct+1
+END 

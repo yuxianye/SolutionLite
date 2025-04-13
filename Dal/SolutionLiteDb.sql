@@ -33,7 +33,9 @@ GO
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Station]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
 drop table [dbo].[Station]
 GO
-
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[PredictRecored]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)  
+drop table [dbo].[PredictRecored]
+GO
 --创建表
 CREATE TABLE [dbo].[Role] (
     [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
@@ -607,3 +609,66 @@ GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'备注', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Station', @level2type = N'COLUMN', @level2name = N'Remark';
 
 GO
+
+CREATE TABLE [dbo].[PredictRecored] (
+    [Id]              UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+    [StationId]       UNIQUEIDENTIFIER NOT NULL,
+    [Name]            NVARCHAR (100)   NOT NULL,
+    [ImageUri]        NVARCHAR (100)   NULL,
+    [VehicleType]     INT              DEFAULT ((0)) NOT NULL,
+    [ExteriorColor]   INT              DEFAULT ((0)) NOT NULL,
+    [CreatedTime]     DATETIME2 (7)    DEFAULT (getdate()) NULL,
+    [CreatorUser]     NVARCHAR (16)    NULL,
+    [LastUpdatedTime] DATETIME2 (7)    DEFAULT (getdate()) NULL,
+    [LastUpdatorUser] NVARCHAR (16)    NULL,
+    [Remark]          NVARCHAR (50)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [AK_PredictRecored_Name] UNIQUE NONCLUSTERED ([Name] ASC),
+    CONSTRAINT [FK_PredictRecored_Station] FOREIGN KEY ([StationId]) REFERENCES [dbo].[Station] ([Id])
+);
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'GUID主键', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'Id';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'工序编码', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'StationId';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'名称（唯一）', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'Name';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'图片路径', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'ImageUri';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'车型', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'VehicleType';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'外观颜色', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'ExteriorColor';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'创建时间', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'CreatedTime';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'创建人', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'CreatorUser';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'最后更新时间', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'LastUpdatedTime';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'最后修改人', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'LastUpdatorUser';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'备注', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PredictRecored', @level2type = N'COLUMN', @level2name = N'Remark';
+
+

@@ -28,6 +28,11 @@ using Utility.Windows;
 using SharpDX.Direct3D9;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using Desktop.VisionModule.Models;
+using System.Xml.Linq;
+using SharpDX;
+using ControlzEx.Standard;
+using SharpDX.Direct2D1.Effects;
 
 namespace Desktop.VisionModule.ViewModels
 {
@@ -91,6 +96,9 @@ namespace Desktop.VisionModule.ViewModels
         /// </summary>
         public DelegateCommand CaptureImageCommand { get; set; }
 
+        public DelegateCommand<string> OpenCVFunctionCommand { get; set; }
+
+
         /// <summary>
         /// 初始化界面相关的命令
         /// </summary>
@@ -98,6 +106,7 @@ namespace Desktop.VisionModule.ViewModels
         {
             this.StartCommand = new DelegateCommand(OnExecuteStartCommand);
             this.CaptureImageCommand = new DelegateCommand(OnExecuteCaptureImageCommand);
+            this.OpenCVFunctionCommand = new DelegateCommand<string>(OnExecuteOpenCVFunctionCommand);
             //this.DefaultViewPositionCommand = new DelegateCommand(OnExecuteDefaultViewPositionCommand);
             //this.PointSelectionCommand = new HelixToolkit.Wpf.PointSelectionCommand(MainContent, OnExecuteModelsPointSelectionCommand, OnExecuteVisualsPointSelectionCommand);
 
@@ -107,6 +116,110 @@ namespace Desktop.VisionModule.ViewModels
             //HitLineGeometry.Indices = new IntCollection(2);
             //HitLineGeometry.Indices.Add(0);
             //HitLineGeometry.Indices.Add(1);
+        }
+
+        private void OnExecuteOpenCVFunctionCommand(string s)
+        {
+
+            //if (frame.Empty())
+            //{
+            //    //return;
+
+            //}
+            Mat mat = new Mat(@"C:\car\WIN_20250401_09_58_43_Pro.jpg");
+
+
+
+            //# 灰度处理
+            switch (s)
+            {
+
+                case "BGR2GRAY":
+                    //processFrame2(frame);
+                    var gray = new Mat();
+                    Cv2.CvtColor(mat, gray, ColorConversionCodes.BGR2GRAY);
+
+                    Cv2.ImShow("BGR2GRAY", gray);
+
+                    //processFrame2(frame);
+                    var blurred = new Mat();
+                    Cv2.GaussianBlur(gray, blurred, new OpenCvSharp.Size(5, 5), 0);
+
+                    // 显示结果或保存图像
+                    Cv2.ImShow("GaussianBlur", blurred);
+                    //Cv2.DestroyAllWindows(); // 关闭所有窗口
+                    // 使用Canny边缘检测
+                    var edges = new Mat();
+                    Cv2.Canny(blurred, edges, 50, 150);
+                    Cv2.ImShow("Canny", edges);
+                    // 查找轮廓
+                    OpenCvSharp.Point[][] contours;
+                    HierarchyIndex[] hierarchy;
+                    Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+                    var erode = new Mat();
+
+                    Cv2.Erode(gray, erode , frame);
+                    Cv2.ImShow("Erode", erode);
+
+                    break;
+                case "GaussianBlur":
+                    //processFrame2(frame);
+                    //var blurred = new Mat();
+                    //Cv2.GaussianBlur(mat, blurred, new OpenCvSharp.Size(5, 5), 0);
+                    //// 显示结果或保存图像
+                    //Cv2.ImShow("GaussianBlur", blurred);
+                    //Cv2.WaitKey(0); // 等待按键后关闭窗口
+                    //Cv2.DestroyAllWindows(); // 关闭所有窗口
+                    break;
+
+
+                default:
+                    break;
+            }
+
+
+
+            // 转换为灰度图
+            //var gray = new Mat();
+            //Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
+
+            // 应用高斯模糊
+            //var blurred = new Mat();
+            //Cv2.GaussianBlur(gray, blurred, new OpenCvSharp.Size(5, 5), 0);
+
+            //// 使用Canny边缘检测
+            //var edges = new Mat();
+            //Cv2.Canny(blurred, edges, 50, 150);
+
+            //// 查找轮廓
+            //OpenCvSharp.Point[][] contours;
+            //HierarchyIndex[] hierarchy;
+            //Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+
+            //// 筛选轮廓（例如，基于面积）
+            //double minArea = 5000; // 最小面积阈值，可根据需要调整
+            //var vehicleContours = new OpenCvSharp.Point[contours.Length][];
+            //int idx = 0;
+            //foreach (var contour in contours)
+            //{
+            //    double area = Cv2.ContourArea(contour);
+            //    if (area > minArea)
+            //    {
+            //        vehicleContours[idx++] = contour;
+            //    }
+            //}
+            //Array.Resize(ref vehicleContours, idx); // 调整数组大小以匹配实际车辆轮廓数量
+
+            //// 在原图上绘制轮廓
+            //foreach (var contour in vehicleContours)
+            //{
+            //    Cv2.DrawContours(frame, new[] { contour }, -1, new Scalar(0, 0, 255), 6); // 绘制红色轮廓
+            //}
+
+            // 显示结果或保存图像
+            //Cv2.ImShow("Vehicle Contours", src);
+            //Cv2.WaitKey(0); // 等待按键后关闭窗口
+            //Cv2.DestroyAllWindows(); // 关闭所有窗口
         }
 
         #endregion
@@ -179,24 +292,24 @@ namespace Desktop.VisionModule.ViewModels
         //    set { SetProperty(ref mainContent, value); }
         //}
 
-        private BitmapSource bitmapCamera;
+        private System.Windows.Media.Imaging.BitmapSource bitmapCamera = new BitmapImage(new Uri("pack://application:,,,/Desktop.Resource;component/Images/Background.jpg"));
 
         /// <summary>
         /// 实时视频流
         /// </summary>
-        public BitmapSource BitmapCamera
+        public System.Windows.Media.Imaging.BitmapSource BitmapCamera
         {
             get { return bitmapCamera; }
             set { SetProperty(ref bitmapCamera, value); }
         }
 
 
-        private BitmapSource captureImage;
+        private System.Windows.Media.Imaging.BitmapSource captureImage = new BitmapImage(new Uri("pack://application:,,,/Desktop.Resource;component/Images/Background.jpg"));
 
         /// <summary>
         /// 已经捕获的图像
         /// </summary>
-        public BitmapSource CaptureImage
+        public System.Windows.Media.Imaging.BitmapSource CaptureImage
         {
             get { return captureImage; }
             set { SetProperty(ref captureImage, value); }
@@ -204,17 +317,38 @@ namespace Desktop.VisionModule.ViewModels
 
 
 
-        private VisionResult visionResult;
+        private ObservableCollection<KeyValuePair<string, float>> visionResult;
 
         /// <summary>
         /// 结果
         /// </summary>
-        public VisionResult VisionResult
+        public ObservableCollection<KeyValuePair<string, float>> VisionResult
         {
             get { return visionResult; }
             set { SetProperty(ref visionResult, value); }
         }
 
+
+        private ObservableCollection<KeyValuePair<string, string>> openCVFunctionList = new ObservableCollection<KeyValuePair<string, string>>() {
+
+        new KeyValuePair<string, string>("BGR2GRAY", "BGR2GRAY"),
+        new KeyValuePair<string, string>("GaussianBlur", "GaussianBlur"),
+        new KeyValuePair<string, string>("Key", "Vaule"),
+        new KeyValuePair<string, string>("Key", "Vaule"),
+        new KeyValuePair<string, string>("Key", "Vaule"),
+        new KeyValuePair<string, string>("Key", "Vaule"),
+        new KeyValuePair<string, string>("Key", "Vaule"),
+
+        };
+
+        /// <summary>
+        /// 结果
+        /// </summary>
+        public ObservableCollection<KeyValuePair<string, string>> OpenCVFunctionList
+        {
+            get { return openCVFunctionList; }
+            set { SetProperty(ref openCVFunctionList, value); }
+        }
 
         #endregion
 
@@ -225,16 +359,20 @@ namespace Desktop.VisionModule.ViewModels
 
 
 
-        VideoCapture capture = new VideoCapture(0); // 0 表示使用默认摄像头
+        VideoCapture capture;
 
         Mat frame = new Mat();
 
 
         private void OnExecuteStartCommand()
         {
-            capture.Set(VideoCaptureProperties.FrameWidth, 1920);
-            capture.Set(VideoCaptureProperties.FrameHeight, 1080);
+            // 0 表示使用默认摄像头
+            //capture = new VideoCapture(0); 
+            //capture = new VideoCapture(@"C:\AudiCar\VID_20250328_101730.mp4");
+            capture = new VideoCapture(@"C:\car\WIN_20250401_09_58_43_Pro.jpg");
 
+            //capture.Set(VideoCaptureProperties.FrameWidth, 1024);
+            //capture.Set(VideoCaptureProperties.FrameHeight, 768);
 
             if (!capture.IsOpened())
             {
@@ -244,11 +382,11 @@ namespace Desktop.VisionModule.ViewModels
 
             while (true)
             {
-                capture.Read(frame);
+                capture?.Read(frame);
                 if (frame.Empty())
                     break;
                 //Cv2.ImShow("Camera", frame);
-
+                processFrame(frame);
                 // 按下 ESC 键退出
                 if (Cv2.WaitKey(1) == 27) break;
                 //BitmapCamera = MatToBitmapImage(frame);
@@ -276,6 +414,154 @@ namespace Desktop.VisionModule.ViewModels
 
         }
 
+        public void processFrame(Mat frame)
+        {
+
+            //CascadeClassifier carClassifier = new CascadeClassifier("path_to_haarcascade_car.xml");
+            ////Mat frame = new Mat();
+            //MatOfRect cars = new MatOfRect();
+
+            ////while (capture.Read(frame))
+            ////{
+            //carClassifier.DetectMultiScale(frame, cars);
+            //foreach (var rect in cars.ToArray())
+            //{
+            //    Cv2.Rectangle(frame, rect, Scalar.Red, 2); // 绘制矩形框
+            //}
+            //Cv2.ImShow("Video", frame);
+            //int key = Cv2.WaitKey(20);
+            //if (key == 27) // 按ESC退出
+            //    break;
+            //}
+        }
+
+        public void processFrame2(Mat frame)
+        {
+            //# 灰度处理
+            var gray = new Mat();
+            Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
+
+            // 转换为灰度图
+            //var gray = new Mat();
+            //Cv2.CvtColor(src, gray, ColorConversionCodes.BGR2GRAY);
+
+            // 应用高斯模糊
+            var blurred = new Mat();
+            Cv2.GaussianBlur(gray, blurred, new OpenCvSharp.Size(5, 5), 0);
+
+            // 使用Canny边缘检测
+            var edges = new Mat();
+            Cv2.Canny(blurred, edges, 50, 150);
+
+            // 查找轮廓
+            OpenCvSharp.Point[][] contours;
+            HierarchyIndex[] hierarchy;
+            Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+
+            // 筛选轮廓（例如，基于面积）
+            double minArea = 5000; // 最小面积阈值，可根据需要调整
+            var vehicleContours = new OpenCvSharp.Point[contours.Length][];
+            int idx = 0;
+            foreach (var contour in contours)
+            {
+                double area = Cv2.ContourArea(contour);
+                if (area > minArea)
+                {
+                    vehicleContours[idx++] = contour;
+                }
+            }
+            Array.Resize(ref vehicleContours, idx); // 调整数组大小以匹配实际车辆轮廓数量
+
+            // 在原图上绘制轮廓
+            foreach (var contour in vehicleContours)
+            {
+                Cv2.DrawContours(frame, new[] { contour }, -1, new Scalar(0, 0, 255), 6); // 绘制红色轮廓
+            }
+
+            // 显示结果或保存图像
+            //Cv2.ImShow("Vehicle Contours", src);
+            //Cv2.WaitKey(0); // 等待按键后关闭窗口
+            //Cv2.DestroyAllWindows(); // 关闭所有窗口
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //# 灰度处理
+            //OutputArray gray = new Mat();
+            //Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
+
+            //OutputArray blur = new Mat();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Cv2.GaussianBlur(gray, blur, new OpenCvSharp.Size(5, 5), 0);
+
+            //  blur = cv2.GaussianBlur(gray, (3, 3), 5)
+            //mask = bgsubmog.apply(blur)
+
+            //# 形态学处理
+            //erode = cv2.erode(mask, kernel)
+            //dilate = cv2.dilate(erode, kernel, iterations = 3)
+            //close = cv2.morphologyEx(dilate, cv2.MORPH_CLOSE, kernel)
+
+            //# 查找轮廓
+            //contours, _ = cv2.findContours(close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+            //# 绘制检测线
+            //cv2.line(frame, (10, 550), (1200, 550), (0, 255, 255), 3)
+            //Cv2.Line(frame, 10, 10, 2000, 200, Scalar.Red,5);
+
+            //OpenCvSharp.Point pt1 = new OpenCvSharp.Point(100, 100);
+            //OpenCvSharp.Point pt2 = new OpenCvSharp.Point(300, 300);
+
+            //Cv2.Rectangle(frame, pt1, pt2, Scalar.Red, 5, LineTypes.AntiAlias, 0);//绘制矩形 参数1:操作图像 2:矩形左上点 3:矩形右下点 4:颜色 5:线宽  6:线型  7:缩放参数（0为不缩放）
+
+            //for c in contours:
+            //x, y, w, h = cv2.boundingRect(c)
+            //if w >= 90 and h >= 90:
+            //cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            //centre_p = (x + int(w / 2), y + int(h / 2))
+            //cars.append(centre_p)
+            //cv2.circle(frame, centre_p, 5, (0, 0, 255), -1)
+
+            //for x, y in cars:
+            //if 593 < y < 607:
+            //car_n += 1
+            //cars.remove((x, y))
+
+            //cv2.putText(frame, "Cars Count: " + str(car_n), (500, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
+            //cv2.imshow('video', frame)
+
+
+        }
 
 
         private void OnExecuteCaptureImageCommand()
@@ -294,7 +580,12 @@ namespace Desktop.VisionModule.ViewModels
                 var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision?imagePath={imagePath}", new StringContent(postdata));
                 //var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision", new StringContent(postdata));
                 string a = r.Result.Content.ReadAsStringAsync().Result.ToString();
-                this.VisionResult = Utility.JsonHelper.FromJson<VisionResult>(a);
+
+
+                var vv = Utility.JsonHelper.FromJson<ObservableCollection<KeyValuePair<string, float>>>(a);
+
+
+                this.VisionResult = vv;
                 LogHelper.Logger.Info(a);
 
                 // string rr = r.GetAwaiter().GetResult().Content.ToString();

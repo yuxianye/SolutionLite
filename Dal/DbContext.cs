@@ -96,6 +96,15 @@ namespace Dal
         /// 用户角色
         /// </summary>
         public DbSet<UserRole> UserRoleDb { get { return new DbSet<UserRole>(Db); } }
+
+        /// <summary>
+        /// PredictRecored预测记录
+        /// </summary>
+        public DbSet<PredictRecored> PredictRecoredDb { get { return new DbSet<PredictRecored>(Db); } }
+
+
+
+
     }
 
 }

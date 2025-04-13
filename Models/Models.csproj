@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbModel\AppLog.cs" />
+    <Compile Include="PredictRecored.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="DeviceNode.cs" />
     <Compile Include="Equipment.cs" />

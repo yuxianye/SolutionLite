@@ -36,8 +36,8 @@ namespace Desktop_VisionModele_MLWebApp
             [ColumnName(@"Label")]
             public uint Label { get; set; }
 
-            //[ColumnName(@"ImageSource")]
-            //public byte[] ImageSource { get; set; }
+            [ColumnName(@"ImageSource")]
+            public byte[] ImageSource { get; set; }
 
             [ColumnName(@"PredictedLabel")]
             public string PredictedLabel { get; set; }

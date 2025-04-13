@@ -22,7 +22,7 @@
         <!--按钮-->
         <StackPanel VerticalAlignment="Center"
                     Orientation="Horizontal">
-            <pc:ImageButton Icon="{iconPacks:Material Kind=Plus}"
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Play}"
                             Content="{StaticResource Start}"
                             ToolTip="{StaticResource Start}"
                             Width="{StaticResource ViewButtonWidth}"
@@ -37,14 +37,23 @@
                             FontSize="{StaticResource ContentFontSize}"
                             Command="{Binding CaptureImageCommand}" />
 
-            <pc:ImageButton Icon="{iconPacks:Material Kind=Pencil}"
-                Content="{StaticResource Setting}"
-                ToolTip="{StaticResource Setting}"
-                Width="{StaticResource ViewButtonWidth}"
-                Margin="{StaticResource ControlMargin6}"
-                FontSize="{StaticResource ContentFontSize}"
-                Command="{Binding SettingCommand}" />
-
+            <pc:ImageButton Icon="{iconPacks:Material Kind=Settings}"
+                            Content="{StaticResource Setting}"
+                            ToolTip="{StaticResource Setting}"
+                            Width="{StaticResource ViewButtonWidth}"
+                            Margin="{StaticResource ControlMargin6}"
+                            FontSize="{StaticResource ContentFontSize}"
+                            Command="{Binding SettingCommand}" />
+            <Metro:SplitButton Command="{Binding OpenCVFunctionCommand}"
+                               CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem.Key}"
+                               DisplayMemberPath="Value"
+                               ItemsSource="{Binding OpenCVFunctionList}"
+                               Orientation="Vertical"
+                               SelectedIndex="0">
+                <!--<Metro:SplitButton.Icon>
+                    <iconPacks:PackIconModern Kind="Book" />
+                </Metro:SplitButton.Icon>-->
+            </Metro:SplitButton>
             <!--<pc:ImageButton Icon="{iconPacks:Material Kind=Refresh}"
                             Content="{StaticResource Refresh}"
                             ToolTip="{StaticResource Refresh}"
@@ -91,67 +100,216 @@
         </StackPanel>
         <!--数据表格-->
 
-        <Grid Grid.Row="1" ShowGridLines="True">
+        <Grid Grid.Row="1"
+              ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="640*"></ColumnDefinition>
                 <ColumnDefinition  Width="5"></ColumnDefinition>
-                <ColumnDefinition Width="640*"></ColumnDefinition>
+                <ColumnDefinition Width="340"></ColumnDefinition>
                 <ColumnDefinition  Width="5"></ColumnDefinition>
                 <ColumnDefinition Width="640*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="240"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="240"></RowDefinition>
-                <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="240"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <!--<RowDefinition Height="5"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>-->
             </Grid.RowDefinitions>
 
             <!--中间横向分割-->
-            <GridSplitter Grid.Row="1" Grid.ColumnSpan="5"
+            <GridSplitter Grid.Row="1"
+                          Grid.ColumnSpan="5"
+                          Height="2"
+                          IsEnabled="True"
+                          HorizontalAlignment="Stretch"></GridSplitter>
+            <!--<GridSplitter Grid.Row="3" Grid.ColumnSpan="5"
               Height="2"
               IsEnabled="True"
               HorizontalAlignment="Stretch"
-              Background="{DynamicResource AccentColorBrush}"></GridSplitter>
-            <GridSplitter Grid.Row="3" Grid.ColumnSpan="5"
-              Height="2"
-              IsEnabled="True"
-              HorizontalAlignment="Stretch"
-              Background="{DynamicResource AccentColorBrush}"></GridSplitter>
-
+              Background="{DynamicResource AccentColorBrush}"></GridSplitter>-->
 
             <!--中间纵向分割-->
-            <GridSplitter Grid.Column="1" Grid.RowSpan="5"
-              Width="2"
-              HorizontalAlignment="Stretch"
-              Background="{DynamicResource AccentColorBrush}"></GridSplitter>
-            <GridSplitter Grid.Column="3" Grid.RowSpan="5"
-                Width="2"
-                HorizontalAlignment="Stretch"
-                Background="{DynamicResource AccentColorBrush}"></GridSplitter>
-
-
+            <GridSplitter Grid.Column="1"
+                          Grid.RowSpan="5"
+                          Width="2"
+                          HorizontalAlignment="Stretch"></GridSplitter>
+            <GridSplitter Grid.Column="3"
+                          Grid.RowSpan="5"
+                          Width="2"
+                          HorizontalAlignment="Stretch"></GridSplitter>
 
             <!--实时画面-->
-            <Image Grid.Column="0" Grid.Row="0" Stretch="Uniform " Source="{Binding BitmapCamera}"></Image>
-            <Image Grid.Column="2" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>
-            <Image Grid.Column="4" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>
+            <Image Grid.Column="0"
+                   Grid.Row="0"
+                   Stretch="Uniform "
+                   Source="{Binding BitmapCamera}"></Image>
+            <!--<Image Grid.Column="2" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>-->
+            <Image Grid.Column="4"
+                   Grid.Row="0"
+                   Stretch="Uniform "
+                   Source="{Binding CaptureImage}"></Image>
 
-            <StackPanel Grid.Column="2" Grid.Row="2" >
-                <TextBlock Text="预测结果:" ></TextBlock>
-                <TextBlock  Text="{Binding VisionResult.PredictedLabel}" ></TextBlock>
-                <!--<TextBlock Text="{Binding VisionResult.Label}" ></TextBlock>-->
+            <Grid Grid.Column="2"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <!--<RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>-->
 
-                <TextBlock Text="相似度:" ></TextBlock>
-                <ListBox ItemsSource="{Binding VisionResult.Score,StringFormat={}{0:P2}}">
+                </Grid.RowDefinitions>
+                <TextBlock  Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            TextAlignment="Center"
+                            FontSize="25"
+                            Text="Predicted Result"></TextBlock>
+
+                <TextBlock  Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            TextAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VisionResult[0].Key}"></TextBlock>
+                <!--<ListView HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding VisionResult}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Key}" />
+                            <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value,StringFormat={}{0:P2}}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
+
+                <ListBox  Grid.Row="4"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          SelectedIndex="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          VerticalAlignment="Top"
+                          ItemsSource="{Binding VisionResult}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="240*"></ColumnDefinition>
+                                    <!--<ColumnDefinition Width="90*"></ColumnDefinition>-->
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ProgressBar  Grid.Column="0"
+                                              Maximum="1"
+                                              Minimum="0"
+                                              Value="{Binding Path=Value,Mode=OneWay}"
+                                              ToolTip="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"></ProgressBar>
+                                <Label  Grid.Column="0"
+                                        FontSize="16"
+                                        Content="{Binding Path=Key,Mode=OneWay}"
+                                        ToolTip="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}" />
+
+                                <!--<TextBlock Grid.Column="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" Text="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"/>-->
+                                <Button Grid.Column="1"
+                                        Content="mark"></Button>
+                                <!--<Label  Grid.Column="1"     FontSize="20" Content="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"></Label>-->
+                                <!--<ProgressBar  Grid.Column="1"  Maximum="1" Minimum="0" Value="0.5" ></ProgressBar>-->
+                                <!--<Button  Grid.Column="2" Content="Maual" ></Button>-->
+
+                                <!--<TextBox  Grid.Column="1" Text="{Binding Path=Value,Mode=OneWay}"/>-->
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
 
+                <!--<RadioButton  Grid.Row="1"  Grid.Column="0"  Grid.ColumnSpan="2" IsChecked="False" ></RadioButton>-->
+                <!--
 
-            </StackPanel>
+                <ProgressBar Grid.Row="4"  Grid.Column="0"  Grid.ColumnSpan="2"    Maximum="1" Minimum="0" Value="{Binding VisionResult.MaxScore,Mode=OneWay}"/>
 
+                <TextBlock  Grid.Row="4" Grid.Column="0"   Grid.ColumnSpan="2"  TextAlignment="Center"  FontSize="20" Text="{Binding VisionResult.MaxScore,StringFormat={}{0:P2}}"
+                                Foreground="WhiteSmoke"></TextBlock>
+
+                <TextBlock  Grid.Row="6" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="6" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="8" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="8" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="10" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="10" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="12" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="12" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+
+                <TextBlock  Grid.Row="14" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="14" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="16" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="16" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="18" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="18" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="20" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+                <TextBlock  Grid.Row="20" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>
+
+                <TextBlock  Grid.Row="22" Grid.Column="0"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>-->
+
+                <!--<TextBlock  Grid.Row="20" Grid.Column="1"   TextAlignment="Center" FontSize="25" Text="0:P2" ></TextBlock>-->
+
+                <!--<Button Grid.Row="6"  Grid.Column="0" Content="Manual Mark (Body)" Command="{Binding ManualMarkCommand}"></Button>
+                    <Button Grid.Row="6"  Grid.Column="2" Content="Manual Mark (Painted)" Command="{Binding ManualMarkCommand}" ></Button>-->
+                <!--<ListBox HorizontalAlignment="Center" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding VisionResult.Score}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" FontWeight="Bold"/>
+                                    -->
+                <!--<TextBlock Foreground="Green"  >
+                                        <TextBlock.Text>
+                                            <Binding XPath="{}Binding}"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>-->
+                <!--
+                                    <Button Content="{Binding}"></Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>-->
+
+                <!--<ProgressBar Margin="10" Grid.Row="2"  Grid.Column="0"  Grid.ColumnSpan="2" Maximum="1" Minimum="0"  Value="{Binding VisionResult.MaxScore,Mode=OneWay}"></ProgressBar>-->
+                <!--<TextBlock  Grid.Row="1" Grid.Column="0"    TextAlignment="Right" FontSize="30" Text="相似度:"></TextBlock>-->
+                <!--<TextBlock  Grid.Row="1" Grid.Column="1"    TextAlignment="Right" FontSize="30" Text="{Binding VisionResult.MaxScore,StringFormat={}{0:P2}}"></TextBlock>-->
+
+                <!--<ListBox  Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding VisionResult.Score,StringFormat={}{0:P2}}">
+                    </ListBox>-->
+            </Grid>
 
         </Grid>
-
 
         <!--分页控件-->
         <!--<StackPanel  Grid.Row="2"

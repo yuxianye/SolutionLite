@@ -12,7 +12,7 @@
     <sys:String x:Key="Login">登 录</sys:String>
     <sys:String x:Key="Register">注册</sys:String>
     <sys:String x:Key="Exit">退 出</sys:String>
-    <sys:String x:Key="LoginTitle1">Audi Vision System</sys:String>
+    <sys:String x:Key="LoginTitle1">Audi FAW NEV SQZ Dog</sys:String>
     <sys:String x:Key="LoginTitle2">用户登陆</sys:String>
     <!--<sys:String x:Key="IMES">Supervisory Control And Data Acquisition</sys:String>-->
     <sys:String x:Key="IMES">视觉检测系统</sys:String>
