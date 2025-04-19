@@ -28,11 +28,11 @@ using Utility.Windows;
 using SharpDX.Direct3D9;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using Desktop.VisionModule.Models;
 using System.Xml.Linq;
 using SharpDX;
 using ControlzEx.Standard;
 using SharpDX.Direct2D1.Effects;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Desktop.VisionModule.ViewModels
 {
@@ -158,7 +158,7 @@ namespace Desktop.VisionModule.ViewModels
                     Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
                     var erode = new Mat();
 
-                    Cv2.Erode(gray, erode , frame);
+                    Cv2.Erode(gray, erode, frame);
                     Cv2.ImShow("Erode", erode);
 
                     break;
@@ -329,6 +329,18 @@ namespace Desktop.VisionModule.ViewModels
         }
 
 
+        private ObservableCollection<KeyValuePair<string, string>> vehicleResult;
+
+        /// <summary>
+        /// 结果
+        /// </summary>
+        public ObservableCollection<KeyValuePair<string, string>> VehicleResult
+        {
+            get { return vehicleResult; }
+            set { SetProperty(ref vehicleResult, value); }
+        }
+
+
         private ObservableCollection<KeyValuePair<string, string>> openCVFunctionList = new ObservableCollection<KeyValuePair<string, string>>() {
 
         new KeyValuePair<string, string>("BGR2GRAY", "BGR2GRAY"),
@@ -369,7 +381,13 @@ namespace Desktop.VisionModule.ViewModels
             // 0 表示使用默认摄像头
             //capture = new VideoCapture(0); 
             //capture = new VideoCapture(@"C:\AudiCar\VID_20250328_101730.mp4");
-            capture = new VideoCapture(@"C:\car\WIN_20250401_09_58_43_Pro.jpg");
+            //capture = new VideoCapture(@"C:\car\WIN_20250414_10_54_55_Pro.mp4");
+            //capture = new VideoCapture(@"C:\car\WIN_20250418_11_27_31_Pro.mp4");
+            capture = new VideoCapture(@"C:\car\WIN_20250418_11_26_24_Pro.mp4");
+            double fps = capture.Get(VideoCaptureProperties.Fps);
+            //@"WIN_20250418_11_25_08_Pro";
+            int vfps = (int)(1000 / fps);
+            //capture = new VideoCapture(@"C:\car\WIN_20250401_09_58_43_Pro.jpg");
 
             //capture.Set(VideoCaptureProperties.FrameWidth, 1024);
             //capture.Set(VideoCaptureProperties.FrameHeight, 768);
@@ -382,18 +400,37 @@ namespace Desktop.VisionModule.ViewModels
 
             while (true)
             {
+                Thread.Sleep(vfps);
+
                 capture?.Read(frame);
                 if (frame.Empty())
                     break;
                 //Cv2.ImShow("Camera", frame);
-                processFrame(frame);
+                //processFrame(frame);
+                //processFrame2(frame);
                 // 按下 ESC 键退出
                 if (Cv2.WaitKey(1) == 27) break;
                 //BitmapCamera = MatToBitmapImage(frame);
-                //Thread.Sleep(2000);
-                //BitmapCamera= OpenCvSharp.WpfExtensions.WriteableBitmapConverter.ToWriteableBitmap(frame);
+                BitmapCamera = OpenCvSharp.WpfExtensions.WriteableBitmapConverter.ToWriteableBitmap(frame);
                 //BitmapCamera= OpenCvSharp.WpfExtensions.BitmapSourceConverter.ToBitmapSource(frame);
-                BitmapCamera = frame.ToBitmapSource();
+                //BitmapCamera = frame.ToBitmapSource();
+
+                //var p = TemplateMatch(@"C:\car\template.png", @"WIN_20250401_10_17_07_Pro.jpg", out double matchVal);
+                //LogHelper.Logger.Debug("pipei:" + p.ToString());
+                //Mat tempImage = Cv2.ImRead(@"C:\car\template.png", ImreadModes.Grayscale);
+                ////Bitmap bmp = MatchTemplate(tempImage, srcImage, out tempPoint, out matchVal);
+                //var gray = new Mat();
+                //Cv2.CvtColor(tempImage, gray, ColorConversionCodes.BGR2GRAY);
+
+                //var graysource = new Mat();
+                //Cv2.CvtColor(frame, graysource, ColorConversionCodes.BGR2GRAY);
+
+
+
+                //OpenCvSharp.Point p;
+                //double match;
+                //var aa = MatchTemplate(gray, graysource, out p, out match);
+                //CaptureImage = aa.ToBitmapSource();
             }
 
             //frame.ImWrite(@"C:\Users\Admin\source\repos\myMLApp\myMLApp\Images\" + DateTime.Now.ToString("yyyy-MM-dd HHmmss fffffff") + ".jpg");
@@ -459,7 +496,7 @@ namespace Desktop.VisionModule.ViewModels
             Cv2.FindContours(edges, out contours, out hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
 
             // 筛选轮廓（例如，基于面积）
-            double minArea = 5000; // 最小面积阈值，可根据需要调整
+            double minArea = 3000; // 最小面积阈值，可根据需要调整
             var vehicleContours = new OpenCvSharp.Point[contours.Length][];
             int idx = 0;
             foreach (var contour in contours)
@@ -564,28 +601,127 @@ namespace Desktop.VisionModule.ViewModels
         }
 
 
-        private void OnExecuteCaptureImageCommand()
+
+        /// <summary>
+        /// 模板匹配  
+        /// </summary>
+        /// <param name="srcImg">被匹配图像路径</param>
+        /// <param name="tempImg">模板图像路径</param>
+        /// <returns>当前匹配完成后 模板在匹配图像中左上角的坐标点</returns>
+        public OpenCvSharp.Point TemplateMatch(string srcImg, string tempImg, out double matchVal)
+        {
+            OpenCvSharp.Point tempPoint = new OpenCvSharp.Point();
+            Mat srcImage = Cv2.ImRead(srcImg, ImreadModes.Grayscale);
+            Mat tempImage = Cv2.ImRead(tempImg, ImreadModes.Grayscale);
+            Bitmap bmp = MatchTemplate(tempImage, srcImage, out tempPoint, out matchVal);
+            //保存图像路径
+            bmp.Save(System.AppDomain.CurrentDomain.BaseDirectory + @"ImgFile\processedImg" + DateTime.Now.ToString("yyMMddHHmmss") + ".bmp");
+            return tempPoint;
+        }
+
+        /// <summary>
+        /// 模板匹配
+        /// </summary>
+        /// <param name="tempalte">模板图片像</param>
+        /// <param name="srcPic">被匹配图像</param>
+        /// <param name="tempPoint">返回模板图像在匹配图像中的坐标位置</param>
+        /// <returns>标注匹配区域的图像</returns> 
+        private Bitmap MatchTemplate(Mat tempalte, Mat srcPic, out OpenCvSharp.Point tempPoint, out double matchValue)
+        {
+            Mat result = new Mat();
+            //模板匹配
+            Cv2.MatchTemplate(srcPic, tempalte, result, TemplateMatchModes.CCoeffNormed);//CCoeffNormed  最好匹配为1,值越小匹配越差
+            Double minVul;
+            Double maxVul;
+            OpenCvSharp.Point minLoc = new OpenCvSharp.Point(0, 0);
+            OpenCvSharp.Point maxLoc = new OpenCvSharp.Point(0, 0);
+            OpenCvSharp.Point matchLoc = new OpenCvSharp.Point(0, 0);
+            //归一化
+            Cv2.Normalize(result, result, 0, 1, NormTypes.MinMax, -1);
+            //寻找极值
+            Cv2.MinMaxLoc(result, out minVul, out maxVul, out minLoc, out maxLoc);
+            //最大值坐标
+            matchLoc = maxLoc;
+            Mat mask = srcPic.Clone();//复制整个矩阵
+            //画框显示 :对角线画框，起点和终点，都用Point，线宽
+            Cv2.Rectangle(mask, matchLoc, new OpenCvSharp.Point(matchLoc.X + tempalte.Cols, matchLoc.Y + tempalte.Rows), Scalar.Green, 2);//2代表画的线条的宽细程度
+
+            //Console.WriteLine("最大值：{0}，X:{1}，Y:{2}", maxVul, matchLoc.Y, matchLoc.X);
+            matchValue = maxVul;
+            tempPoint.X = matchLoc.X;
+            tempPoint.Y = matchLoc.Y;
+            //循环查找画框显示
+            Double threshold = 0.91;
+            Mat maskMulti = srcPic.Clone();
+            for (int i = 1; i < result.Rows - tempalte.Rows; i += tempalte.Rows)
+            {
+                for (int j = 1; j < result.Cols - tempalte.Cols; j += tempalte.Cols)
+                {
+                    OpenCvSharp.Rect roi = new OpenCvSharp.Rect(j, i, tempalte.Cols, tempalte.Rows);        //建立感兴趣
+                    Mat RoiResult = new Mat(result, roi);
+                    Cv2.MinMaxLoc(RoiResult, out minVul, out maxVul, out minLoc, out maxLoc);//查找极值
+                    matchLoc = maxLoc;//最大值坐标
+                    if (maxVul > threshold)
+                    {
+                        //画框显示
+                        Cv2.Rectangle(maskMulti, new OpenCvSharp.Point(j + maxLoc.X, i + maxLoc.Y), new OpenCvSharp.Point(j + maxLoc.X + tempalte.Cols, i + maxLoc.Y + tempalte.Rows), Scalar.Green, 2);
+                        string axis = '(' + Convert.ToString(i + maxLoc.Y) + ',' + Convert.ToString(j + maxLoc.X) + ')';
+                        Cv2.PutText(maskMulti, axis, new OpenCvSharp.Point(j + maxLoc.X, i + maxLoc.Y), HersheyFonts.HersheyPlain, 1, Scalar.Red, 1, LineTypes.Link4);
+                    }
+                }
+            }
+            //返回匹配后图像
+            return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(mask);
+        }
+
+        /// <summary>
+        /// 数据访问上下文
+        /// </summary>
+        private Dal.DbContext dbContext = new Dal.DbContext();
+
+        private async void OnExecuteCaptureImageCommand()
         {
 
             try
             {
 
-                string imagePath = Utility.ConstValue.AppPath + @"Images\" + DateTime.Now.ToString("yyyy-MM-dd HHmmss fffffff") + ".png";
+                string imagePath = Utility.ConstValue.AppPath + @"Images\" + DateTime.Now.ToString("yyyy-MM-dd_HHmmss_fffffff") + ".png";
                 frame.ImWrite(imagePath);
 
                 CaptureImage = BitmapCamera = frame.ToBitmapSource();
                 string postdata = $"{{\"imagePath\":\"{imagePath}\"}}";
 
                 HttpClient httpClient = new HttpClient();
-                var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision?imagePath={imagePath}", new StringContent(postdata));
+                var r = await httpClient.PostAsync($"https://localhost:7091/VehicleVision?imagePath={imagePath}", new StringContent(postdata));
                 //var r = httpClient.PostAsync($"https://localhost:7091/VehicleVision", new StringContent(postdata));
-                string a = r.Result.Content.ReadAsStringAsync().Result.ToString();
+                string a = r.Content.ReadAsStringAsync().Result.ToString();
 
 
                 var vv = Utility.JsonHelper.FromJson<ObservableCollection<KeyValuePair<string, float>>>(a);
+                string vehiceNo = $"OC{DateTime.Now.Year}_{DateTime.Now.ToString("HHmmss")}";
 
+                //string name = $"OC{DateTime.Now.Year}_{DateTime.Now.ToString("DDHHmmss")}_{VehicleType.Q6L_SB}_{ExteriorColor.X0X0}";
 
                 this.VisionResult = vv;
+                VehicleResult = new ObservableCollection<KeyValuePair<string, string>>();
+                VehicleResult.Add(new KeyValuePair<string, string>("VehiceNo", vehiceNo));
+                VehicleResult.Add(new KeyValuePair<string, string>("VehicleType", VehicleType.Q6L.ToString()));
+                VehicleResult.Add(new KeyValuePair<string, string>("ExteriorColor", ExteriorColor.X0X0.ToString()));
+
+
+                dbContext.PredictRecoredDb.Insert(new PredictRecored()
+                {
+                    Name = $"{vehiceNo}_{VehicleType.Q6L}_{ExteriorColor.X0X0}",
+                    StationId = new Guid("063b939e-8863-4177-8fe5-1e9d318daf32"),
+                    ImageUri = imagePath,
+                    ExteriorColor = ExteriorColor.X0X0,
+                    VehicleType = VehicleType.Q6L_SB,
+
+                    CreatedTime = dbContext.Db.GetDate(),
+                    CreatorUser = StaticData.CurrentUser.Name,
+                    LastUpdatedTime = dbContext.Db.GetDate(),
+                    LastUpdatorUser = StaticData.CurrentUser.Name,
+                });
                 LogHelper.Logger.Info(a);
 
                 // string rr = r.GetAwaiter().GetResult().Content.ToString();

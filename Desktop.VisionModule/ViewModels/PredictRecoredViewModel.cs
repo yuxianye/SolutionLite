@@ -148,6 +148,11 @@ namespace Desktop.VisionModule.ViewModels
         public DelegateCommand<string> SearchCommand { get; set; }
 
         /// <summary>
+        /// open Image命令
+        /// </summary>
+        public DelegateCommand ShowImageCommand { get; set; }
+
+        /// <summary>
         /// 初始化命令,刷新和查询命令始终可用。
         /// </summary>
         private void initCommand()
@@ -160,6 +165,9 @@ namespace Desktop.VisionModule.ViewModels
             ExportCommand = new DelegateCommand(executeExportCommand, canExecuteExportCommand);
             PrintCommand = new DelegateCommand(executePrintCommand, canExecutePrintCommand);
             SearchCommand = new DelegateCommand<string>(executeSearchCommand);
+
+            ShowImageCommand = new DelegateCommand(executeShowImageCommand);
+
         }
 
         #endregion
@@ -204,6 +212,12 @@ namespace Desktop.VisionModule.ViewModels
             print.Width = width;
             print.Height = height;
             MenuItems.Add(new MenuItem() { Icon = print, Header = ResourceHelper.FindResource("Print"), Command = PrintCommand });
+
+            var showImage = BitmapImageHelper.GetImage(@"pack://application:,,,/Desktop.Resource;component/Images/Edit_32.png");
+            showImage.Width = width;
+            showImage.Height = height;
+            MenuItems.Add(new MenuItem() { Icon = print, Header = ResourceHelper.FindResource("ShowImage"), Command = ShowImageCommand });
+
         }
         #endregion
 
@@ -398,6 +412,25 @@ namespace Desktop.VisionModule.ViewModels
                 return false;
             }
         }
+
+        private void executeShowImageCommand()
+        {
+            //EventAggregator.GetEvent<NavigateEvent>().Publish(new ViewInfo(ViewType.Popup,
+            //             StaticData.Module.FirstOrDefault(a => a.AssemblyName == assemblyName && a.ViewName == printViewName)));
+            //建立新的系统进程
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            //设置图片的真实路径和文件名
+            process.StartInfo.FileName = this.SelectedData.ImageUri;
+            //设置进程运行参数,这里以最大化窗口方法显示图片。
+            process.StartInfo.Arguments = "rund1132.exe C: //WINDOWS//system32//shimgvw.dll,ImageView_Fullscreen";
+            //此项为是否使用Shell执行程序,因系统默认为true,此项也可不设,但若设置必须为true
+            process.StartInfo.UseShellExecute = true;
+            // 此处可以更改进程所打开窗体的显示样式,可以不设
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden; process.Start();
+            process.Close();
+        }
+
+
 
         /// <summary>
         /// 执行查询命令

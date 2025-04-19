@@ -9,4 +9,6 @@
     <sys:String x:Key="PredictRecoredVehicleType">Vehicle Type</sys:String>
     <sys:String x:Key="PredictRecoredExteriorColor">Exterior Color</sys:String>
     <sys:String x:Key="PredictRecoredSearchTextBoxWatermark">VehicleType/ExteriorColor/创建人/修改人</sys:String>
+    <sys:String x:Key="ShowImage">ShowImage</sys:String>
+    
 </ResourceDictionary>

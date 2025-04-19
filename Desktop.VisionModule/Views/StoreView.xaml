@@ -111,6 +111,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <!--<RowDefinition Height="5"></RowDefinition>
@@ -118,7 +119,7 @@
             </Grid.RowDefinitions>
 
             <!--中间横向分割-->
-            <GridSplitter Grid.Row="1"
+            <GridSplitter Grid.Row="2"
                           Grid.ColumnSpan="5"
                           Height="2"
                           IsEnabled="True"
@@ -140,11 +141,21 @@
                           HorizontalAlignment="Stretch"></GridSplitter>
 
             <!--实时画面-->
+            <TextBlock Grid.Row="1"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Text="实时画面"></TextBlock>
             <Image Grid.Column="0"
                    Grid.Row="0"
                    Stretch="Uniform "
                    Source="{Binding BitmapCamera}"></Image>
             <!--<Image Grid.Column="2" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>-->
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="4"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Text="捕获画面"></TextBlock>
             <Image Grid.Column="4"
                    Grid.Row="0"
                    Stretch="Uniform "
@@ -162,13 +173,13 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <!--<RowDefinition Height="5"></RowDefinition>
-                    <RowDefinition></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <!--  <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -186,26 +197,55 @@
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             TextAlignment="Center"
-                            FontSize="25"
+                            FontSize="35"
                             Text="Predicted Result"></TextBlock>
 
                 <TextBlock  Grid.Row="2"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             TextAlignment="Center"
-                            FontSize="20"
+                            FontSize="35"
                             FontWeight="Bold"
                             Text="{Binding VisionResult[0].Key}"></TextBlock>
-                <!--<ListView HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding VisionResult}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Key}" />
-                            <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value,StringFormat={}{0:P2}}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>-->
 
-                <ListBox  Grid.Row="4"
+                <TextBlock  Grid.Row="4"
+                            Grid.Column="0"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[0].Key}"></TextBlock>
+                <TextBlock  Grid.Row="4"
+                            Grid.Column="1"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[0].Value}"></TextBlock>
+                <TextBlock  Grid.Row="6"
+                            Grid.Column="0"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[1].Key}"></TextBlock>
+                <TextBlock  Grid.Row="6"
+                            Grid.Column="1"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[1].Value}"></TextBlock>
+                <TextBlock  Grid.Row="8"
+                            Grid.Column="0"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[2].Key}"></TextBlock>
+                <TextBlock  Grid.Row="8"
+                            Grid.Column="1"
+                            TextAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding VehicleResult[2].Value}"></TextBlock>
+
+                <ListBox  Grid.Row="10"
                           Grid.Column="0"
                           Grid.ColumnSpan="2"
                           SelectedIndex="0"
@@ -227,10 +267,15 @@
                                               ToolTip="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"></ProgressBar>
                                 <Label  Grid.Column="0"
                                         FontSize="16"
+                                        HorizontalAlignment="Left"
                                         Content="{Binding Path=Key,Mode=OneWay}"
                                         ToolTip="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}" />
+                                <TextBlock Grid.Column="0"
+                                           Foreground="White"
+                                           FontSize="20"
+                                           HorizontalAlignment="Right"
+                                           Text="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}" />
 
-                                <!--<TextBlock Grid.Column="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" Text="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"/>-->
                                 <Button Grid.Column="1"
                                         Content="mark"></Button>
                                 <!--<Label  Grid.Column="1"     FontSize="20" Content="{Binding Path=Value,Mode=OneWay,StringFormat={}{0:P2}}"></Label>-->
@@ -243,6 +288,15 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <!--<ListView HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding VisionResult}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Key}" />
+                            <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value,StringFormat={}{0:P2}}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
 
                 <!--<RadioButton  Grid.Row="1"  Grid.Column="0"  Grid.ColumnSpan="2" IsChecked="False" ></RadioButton>-->
                 <!--
