@@ -141,21 +141,30 @@
                           HorizontalAlignment="Stretch"></GridSplitter>
 
             <!--实时画面-->
-            <TextBlock Grid.Row="1"
-                       FontSize="20"
-                       HorizontalAlignment="Center"
-                       Text="实时画面"></TextBlock>
+            <Grid Grid.Row="1"
+                  Background="Azure">
+                <TextBlock Grid.Row="1"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Text="实时画面"></TextBlock>
+            </Grid>
+
             <Image Grid.Column="0"
                    Grid.Row="0"
                    Stretch="Uniform "
                    Source="{Binding BitmapCamera}"></Image>
             <!--<Image Grid.Column="2" Grid.Row="0" Stretch="Uniform " Source="{Binding CaptureImage}" ></Image>-->
 
-            <TextBlock Grid.Row="1"
-                       Grid.Column="4"
-                       FontSize="20"
-                       HorizontalAlignment="Center"
-                       Text="捕获画面"></TextBlock>
+       
+            <Grid Grid.Row="1"
+                  Grid.Column="4"
+                  Background="Azure">
+                <TextBlock Grid.Row="1"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Text="捕获画面"></TextBlock>
+            </Grid>
+
             <Image Grid.Column="4"
                    Grid.Row="0"
                    Stretch="Uniform "
